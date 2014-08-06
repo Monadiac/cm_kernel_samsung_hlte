@@ -861,9 +861,7 @@ int msm_pm_wait_cpu_shutdown(unsigned int cpu)
 		if (acc_sts & msm_pm_slp_sts[cpu].mask)
 			return 0;
 		udelay(100);
-#if defined(CONFIG_ARCH_MSM8974) || defined(CONFIG_ARCH_MSM8974PRO)
-		WARN(++timeout == 20, "CPU%u didn't collapse in 2 ms\n", cpu);
-#endif
+		WARN(++timeout == 50, "CPU%u didn't collapse in 5 ms\n", cpu);
 	}
 #if !(defined(CONFIG_ARCH_MSM8974) || defined(CONFIG_ARCH_MSM8974PRO))
 	pr_info("%s(): Timed out waiting for CPU %u SPM to enter sleep state",

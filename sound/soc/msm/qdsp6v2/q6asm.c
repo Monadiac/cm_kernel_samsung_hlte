@@ -963,7 +963,7 @@ int q6asm_audio_client_buf_alloc(unsigned int dir,
 		}
 		mutex_lock(&ac->cmd_lock);
 		if (bufcnt > (LONG_MAX/sizeof(struct audio_buffer))) {
-			pr_err("%s: Buffer size overflows", __func__);			
+			pr_err("%s: Buffer size overflows", __func__);
 			mutex_unlock(&ac->cmd_lock);
 			goto fail;
 		}

@@ -154,6 +154,27 @@ struct snd_compr_audio_info {
 };
 
 /**
+ * @SNDRV_COMPRESS_ENCODER_PADDING: no of samples appended by the encoder at the
+ * end of the track
+ * @SNDRV_COMPRESS_ENCODER_DELAY: no of samples inserted by the encoder at the
+ * beginning of the track
+ */
+enum {
+	SNDRV_COMPRESS_ENCODER_PADDING = 1,
+	SNDRV_COMPRESS_ENCODER_DELAY = 2,
+};
+
+/**
+ * struct snd_compr_metadata: compressed stream metadata
+ * @key: key id
+ * @value: key value
+ */
+struct snd_compr_metadata {
+	 __u32 key;
+	 __u32 value[8];
+};
+
+/**
  * compress path ioctl definitions
  * SNDRV_COMPRESS_GET_CAPS: Query capability of DSP
  * SNDRV_COMPRESS_GET_CODEC_CAPS: Query capability of a codec
@@ -196,6 +217,8 @@ struct snd_compr_audio_info {
  *
  */
 #define SND_COMPR_TRIGGER_DRAIN 7 /*FIXME move this to pcm.h */
+#define SND_COMPR_TRIGGER_NEXT_TRACK 8
+#define SND_COMPR_TRIGGER_PARTIAL_DRAIN 9
 
 #define SND_COMPR_TRIGGER_NEXT_TRACK 8
 #define SND_COMPR_TRIGGER_PARTIAL_DRAIN 9

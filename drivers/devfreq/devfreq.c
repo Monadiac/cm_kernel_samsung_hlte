@@ -587,7 +587,7 @@ int devfreq_remove_device(struct devfreq *devfreq)
 	if (!devfreq)
 		return -EINVAL;
 
-	_remove_devfreq(devfreq, false);
+	device_unregister(&devfreq->dev);
 
 	return 0;
 }

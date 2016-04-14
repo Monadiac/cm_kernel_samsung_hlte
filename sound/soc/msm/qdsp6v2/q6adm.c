@@ -444,10 +444,10 @@ int adm_get_params(int port_id, uint32_t module_id, uint32_t param_id,
 		rc = -EINVAL;
 		goto adm_get_param_return;
 	}
-	if ((params_data) && (ARRAY_SIZE(adm_get_parameters) >=
-		(1+adm_get_parameters[0])) &&
-		(params_length/sizeof(int) >=
-		adm_get_parameters[0])) {
+	if ((params_data) &&
+	    (ARRAY_SIZE(adm_get_parameters) > 0) &&
+	    (ARRAY_SIZE(adm_get_parameters) >= 1+adm_get_parameters[0]) &&
+	    (params_length/sizeof(uint32_t) >= adm_get_parameters[0])) {
 		for (i = 0; i < adm_get_parameters[0]; i++)
 			params_data[i] = adm_get_parameters[1+i];
 	} else {
@@ -655,13 +655,17 @@ static int32_t adm_callback(struct apr_client_data *data, void *priv)
 
 			/* payload[3] is the param size, check if payload */
 			/* is big enough and has a valid param size */
-			if ((payload[0] == 0) && (data->payload_size >
-				(4 * sizeof(*payload))) &&
-				(data->payload_size/sizeof(*payload)-4 >=
-				payload[3]) &&
-				(ARRAY_SIZE(adm_get_parameters)-1 >=
-				payload[3])) {
-				adm_get_parameters[0] = payload[3];
+			if ((payload[0] == 0) &&
+			    (data->payload_size > (4 * sizeof(*payload))) &&
+			    (data->payload_size - 4 >= payload[3]) &&
+			    (ARRAY_SIZE(adm_get_parameters) > 0) &&
+			    (ARRAY_SIZE(adm_get_parameters)-1 >= payload[3])) {
+				adm_get_parameters[0] = payload[3] /
+							sizeof(uint32_t);
+				/*
+				 * payload[3] is param_size which is
+				 * expressed in number of bytes
+				 */
 				pr_debug("%s: GET_PP PARAM:received parameter length: 0x%x\n",
 					__func__, adm_get_parameters[0]);
 				/* storing param size then params */

@@ -268,6 +268,20 @@ static struct kgsl_cmdbatch *_get_cmdbatch(struct adreno_context *drawctxt)
 		 */
 		if (!timer_pending(&cmdbatch->timer))
 			mod_timer(&cmdbatch->timer, jiffies + msecs_to_jiffies(5000));
+			spin_unlock(&cmdbatch->lock);
+		} else {
+			/*
+			 * Otherwise, delete the timer to make sure it is good
+			 * and dead before queuing the buffer
+			 */
+			spin_unlock(&cmdbatch->lock);
+			del_timer_sync(&cmdbatch->timer);
+		}
+
+		if (pending) {
+			cmdbatch = ERR_PTR(-EAGAIN);
+			goto done;
+		}
 
 		return ERR_PTR(-EAGAIN);
 	}

@@ -20,12 +20,7 @@
 #include <keys/encrypted-type.h>
 #include <keys/user-type.h>
 #include <linux/crypto.h>
-#include <linux/gfp.h>
-#include <linux/kernel.h>
-#include <linux/key.h>
-#include <linux/list.h>
-#include <linux/mempool.h>
-#include <linux/random.h>
+#include <linux/module.h>
 #include <linux/scatterlist.h>
 #include <linux/spinlock_types.h>
 #include <linux/f2fs_fs.h>

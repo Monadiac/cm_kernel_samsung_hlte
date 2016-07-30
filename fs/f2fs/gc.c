@@ -465,7 +465,15 @@ next_step:
 			continue;
 		}
 
-		move_node_page(node_page, gc_type);
+		/* set page dirty and write it */
+		if (gc_type == FG_GC) {
+			f2fs_wait_on_page_writeback(node_page, NODE, true);
+			set_page_dirty(node_page);
+		} else {
+			if (!PageWriteback(node_page))
+				set_page_dirty(node_page);
+		}
+		f2fs_put_page(node_page, 1);
 		stat_inc_node_blk_count(sbi, 1, gc_type);
 	}
 
@@ -826,9 +834,18 @@ static int do_garbage_collect(struct f2fs_sb_info *sbi,
 		f2fs_put_page(sum_page, 0);
 	}
 
-	if (gc_type == FG_GC)
-		f2fs_submit_merged_bio(sbi,
-				(type == SUM_TYPE_NODE) ? NODE : DATA, WRITE);
+	if (gc_type == FG_GC) {
+		if (type == SUM_TYPE_NODE) {
+			struct writeback_control wbc = {
+				.sync_mode = WB_SYNC_ALL,
+				.nr_to_write = LONG_MAX,
+				.for_reclaim = 0,
+			};
+			sync_node_pages(sbi, &wbc);
+		} else {
+			f2fs_submit_merged_bio(sbi, DATA, WRITE);
+		}
+	}
 
 	blk_finish_plug(&plug);
 

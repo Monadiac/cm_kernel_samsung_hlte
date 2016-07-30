@@ -460,7 +460,8 @@ static int do_recover_data(struct f2fs_sb_info *sbi, struct inode *inode,
 		 */
 		if (dest == NEW_ADDR) {
 			truncate_data_blocks_range(&dn, 1);
-			reserve_new_block(&dn);
+			err = reserve_new_block(&dn);
+			f2fs_bug_on(sbi, err);
 			continue;
 		}
 

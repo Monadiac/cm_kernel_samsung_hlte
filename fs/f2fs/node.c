@@ -1277,14 +1277,10 @@ next_step:
 			 * we should not skip writing node pages.
 			 */
 lock_node:
-			if (ino) {
-				if (ino_of_node(page) == ino)
-					lock_page(page);
-				else
-					continue;
-			} else if (!trylock_page(page)) {
+			if (ino && ino_of_node(page) == ino)
+				lock_page(page);
+			else if (!trylock_page(page))
 				continue;
-			}
 
 			if (unlikely(page->mapping != NODE_MAPPING(sbi))) {
 continue_unlock:

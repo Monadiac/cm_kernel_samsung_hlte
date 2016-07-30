@@ -257,8 +257,11 @@ static int find_fsync_dnodes(struct f2fs_sb_info *sbi, struct list_head *head)
 		}
 		entry->blkaddr = blkaddr;
 
-		if (IS_INODE(page) && is_dent_dnode(page))
-			entry->last_dentry = blkaddr;
+		if (IS_INODE(page)) {
+			entry->last_inode = blkaddr;
+			if (is_dent_dnode(page))
+				entry->last_dentry = blkaddr;
+		}
 next:
 		/* check next segment */
 		blkaddr = next_blkaddr_of_node(page);
@@ -518,7 +521,7 @@ static int recover_data(struct f2fs_sb_info *sbi, struct list_head *head)
 		 * In this case, we can lose the latest inode(x).
 		 * So, call recover_inode for the inode update.
 		 */
-		if (IS_INODE(page))
+		if (entry->last_inode == blkaddr)
 			recover_inode(entry->inode, page);
 		if (entry->last_dentry == blkaddr) {
 			err = recover_dentry(entry->inode, page);

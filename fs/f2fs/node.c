@@ -1208,7 +1208,6 @@ static void flush_inline_data(struct f2fs_sb_info *sbi, nid_t ino)
 {
 	struct inode *inode;
 	struct page *page;
-	int ret;
 
 	/* should flush inline_data before evict_inode */
 	inode = ilookup(sbi->sb, ino);
@@ -1231,9 +1230,9 @@ static void flush_inline_data(struct f2fs_sb_info *sbi, nid_t ino)
 	if (!clear_page_dirty_for_io(page))
 		goto page_out;
 
-	ret = f2fs_write_inline_data(inode, page);
-	inode_dec_dirty_pages(inode);
-	if (ret)
+	if (!f2fs_write_inline_data(inode, page))
+		inode_dec_dirty_pages(inode);
+	else
 		set_page_dirty(page);
 page_out:
 	unlock_page(page);

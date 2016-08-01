@@ -267,6 +267,16 @@ static int sdcardfs_show_options(struct seq_file *m, struct dentry *root)
 	if (opts->reserved_mb != 0)
 		seq_printf(m, ",reserved=%uMB", opts->reserved_mb);
 
+	if (opts->derive == DERIVE_NONE)
+		seq_printf(m, ",derive=none");
+	else if (opts->derive == DERIVE_LEGACY)
+		seq_printf(m, ",derive=legacy");
+	else if (opts->derive == DERIVE_UNIFIED)
+		seq_printf(m, ",derive=unified");
+
+	if (opts->reserved_mb != 0)
+		seq_printf(m, ",reserved=%uMB", opts->reserved_mb);
+
 	return 0;
 };
 

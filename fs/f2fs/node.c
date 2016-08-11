@@ -1084,11 +1084,12 @@ void ra_node_page(struct f2fs_sb_info *sbi, nid_t nid)
 		return;
 	f2fs_bug_on(sbi, check_nid_range(sbi, nid));
 
-	rcu_read_lock();
-	apage = radix_tree_lookup(&NODE_MAPPING(sbi)->page_tree, nid);
-	rcu_read_unlock();
-	if (apage)
+	apage = find_get_page(NODE_MAPPING(sbi), nid);
+	if (apage && PageUptodate(apage)) {
+		f2fs_put_page(apage, 0);
 		return;
+	}
+	f2fs_put_page(apage, 0);
 
 	apage = grab_cache_page(NODE_MAPPING(sbi), nid);
 	if (!apage)
@@ -1101,7 +1102,7 @@ void ra_node_page(struct f2fs_sb_info *sbi, nid_t nid)
 /*
  * readahead MAX_RA_NODE number of node pages.
  */
-static void ra_node_pages(struct page *parent, int start)
+void ra_node_pages(struct page *parent, int start)
 {
 	struct f2fs_sb_info *sbi = F2FS_P_SB(parent);
 	struct blk_plug plug;
@@ -1120,7 +1121,7 @@ static void ra_node_pages(struct page *parent, int start)
 	blk_finish_plug(&plug);
 }
 
-static struct page *__get_node_page(struct f2fs_sb_info *sbi, pgoff_t nid,
+struct page *__get_node_page(struct f2fs_sb_info *sbi, pgoff_t nid,
 					struct page *parent, int start)
 {
 	struct page *page;
@@ -1236,7 +1237,7 @@ int sync_node_pages(struct f2fs_sb_info *sbi, nid_t ino,
 	pgoff_t index, end;
 	struct pagevec pvec;
 	int step = ino ? 2 : 0;
-	int nwritten = 0;
+	int nwritten = 0, wrote = 0;
 
 	pagevec_init(&pvec, 0);
 
@@ -1326,6 +1327,8 @@ continue_unlock:
 
 			if (NODE_MAPPING(sbi)->a_ops->writepage(page, wbc))
 				unlock_page(page);
+			else
+				wrote++;
 
 			if (--wbc->nr_to_write == 0)
 				break;
@@ -1342,6 +1345,14 @@ continue_unlock:
 	if (step < 2) {
 		step++;
 		goto next_step;
+	}
+
+	if (wrote) {
+		if (ino)
+			f2fs_submit_merged_bio_cond(sbi, NULL, NULL,
+							ino, NODE, WRITE);
+		else
+			f2fs_submit_merged_bio(sbi, NODE, WRITE);
 	}
 	return nwritten;
 }

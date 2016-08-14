@@ -546,6 +546,7 @@ static void samsung_sys_class_init(void)
  */
 void __init msm8974_add_drivers(void)
 {
+	msm_smem_init();
 	msm_init_modem_notifier_list();
 	msm_smd_init();
 	msm_rpm_driver_init();
@@ -618,16 +619,6 @@ void __init msm8974_init(void)
 {
 	struct of_dev_auxdata *adata = msm8974_auxdata_lookup;
 
-	/*
-	 * populate devices from DT first so smem probe will get called as part
-	 * of msm_smem_init.  socinfo_init needs smem support so call
-	 * msm_smem_init before it.  msm_8974_init_gpiomux needs socinfo so
-	 * call socinfo_init before it.
-	 */
-	board_dt_populate(adata);
-
-	msm_smem_init();
-
 #ifdef CONFIG_SEC_DEBUG
 	sec_debug_init();
 #endif
@@ -645,6 +636,7 @@ void __init msm8974_init(void)
 #ifdef CONFIG_ANDROID_RAM_CONSOLE
         add_ramconsole_devices();
 #endif
+	board_dt_populate(adata);
 	msm8974_add_drivers();
 
 	platform_add_devices(common_devices, ARRAY_SIZE(common_devices));

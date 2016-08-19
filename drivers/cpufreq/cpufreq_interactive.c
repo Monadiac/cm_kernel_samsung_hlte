@@ -128,7 +128,7 @@ static u64 boostpulse_endtime;
 static int timer_slack_val = DEFAULT_TIMER_SLACK;
 
 #define TOP_STOCK_FREQ 2265600
-#define DEFAULT_SCREEN_OFF_MAX 2265600
+#define DEFAULT_SCREEN_OFF_MAX 652800
 static unsigned long screen_off_max = DEFAULT_SCREEN_OFF_MAX;
 
 static bool io_is_busy;
@@ -199,9 +199,9 @@ static int mode_count = 0;
  * up_threshold_any_cpu_freq then do not let the frequency to drop below
  * sync_freq
  */
-static unsigned int up_threshold_any_cpu_load = 60;
+static unsigned int up_threshold_any_cpu_load = 90;
 static unsigned int sync_freq = 1036800;
-static unsigned int up_threshold_any_cpu_freq = 1728000;
+static unsigned int up_threshold_any_cpu_freq = 1574400;
 
 static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 		unsigned int event);

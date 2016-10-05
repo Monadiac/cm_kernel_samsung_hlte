@@ -1,6 +1,7 @@
 /*
  *  TUN - Universal TUN/TAP device driver.
  *  Copyright (C) 1999-2002 Maxim Krasnyansky <maxk@qualcomm.com>
+ *  Copyright (c) 2015 Samsung Electronics Co., Ltd.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -33,6 +34,14 @@
  *  Daniel Podlejski <underley@underley.eu.org>
  *    Modifications for 2.3.99-pre5 kernel.
  */
+/*
+ *  Changes:
+ *  KwnagHyun Kim <kh0304.kim@samsung.com> 2015/07/08
+ *  Baesung Park  <baesung.park@samsung.com> 2015/07/08
+ *  Vignesh Saravanaperumal <vignesh1.s@samsung.com> 2015/07/08
+ *    Add codes to share UID/PID information
+ *
+ */
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
@@ -64,7 +73,6 @@
 #include <linux/nsproxy.h>
 #include <linux/virtio_net.h>
 #include <linux/rcupdate.h>
-#include <net/ipv6.h>
 #include <net/net_namespace.h>
 #include <net/netns/generic.h>
 #include <net/rtnetlink.h>
@@ -77,8 +85,6 @@
 #include <net/ip.h>
 
 #define META_MARK_BASE_LOWER 100
-#define META_UID_PID_MARK_BASE_LOWER 150
-#define META_UID_PID_MARK_BASE_UPPER 199
 #define META_MARK_BASE_UPPER 500
 
 // ------------- END of KNOX_VPN -------------------//
@@ -86,7 +92,7 @@
 #include <asm/uaccess.h>
 
 /* Uncomment to enable debugging */
-/* #define TUN_DEBUG 1 */
+#define TUN_DEBUG 1
 
 #ifdef TUN_DEBUG
 static int debug;
@@ -221,6 +227,7 @@ static void __tun_detach(struct tun_struct *tun)
 	netif_tx_lock_bh(tun->dev);
 	netif_carrier_off(tun->dev);
 	tun->tfile = NULL;
+	tun->socket.file = NULL;
 	netif_tx_unlock_bh(tun->dev);
 
 	/* Drop read queue */
@@ -393,8 +400,6 @@ static void tun_free_netdev(struct net_device *dev)
 {
 	struct tun_struct *tun = netdev_priv(dev);
 
-	BUG_ON(!test_bit(SOCK_EXTERNALLY_ALLOCATED, &tun->socket.flags));
-
 	sk_release_kernel(tun->socket.sk);
 }
 
@@ -452,8 +457,6 @@ static netdev_tx_t tun_net_xmit(struct sk_buff *skb, struct net_device *dev)
 	/* Orphan the skb - required as we might hang on to it
 	 * for indefinite time. */
 	skb_orphan(skb);
-
-	nf_reset(skb);
 
 	/* Enqueue packet */
 	skb_queue_tail(&tun->socket.sk->sk_receive_queue, skb);
@@ -651,9 +654,8 @@ static ssize_t tun_get_user(struct tun_struct *tun,
 	int offset = 0;
 
 	if (!(tun->flags & TUN_NO_PI)) {
-		if (len < sizeof(pi))
+		if ((len -= sizeof(pi)) > count)
 			return -EINVAL;
-		len -= sizeof(pi);
 
 		if (memcpy_fromiovecend((void *)&pi, iv, 0, sizeof(pi)))
 			return -EFAULT;
@@ -661,9 +663,8 @@ static ssize_t tun_get_user(struct tun_struct *tun,
 	}
 
 	if (tun->flags & TUN_VNET_HDR) {
-		if (len < tun->vnet_hdr_sz)
+		if ((len -= tun->vnet_hdr_sz) > count)
 			return -EINVAL;
-		len -= tun->vnet_hdr_sz;
 
 		if (memcpy_fromiovecend((void *)&gso, iv, offset, sizeof(gso)))
 			return -EFAULT;
@@ -732,8 +733,6 @@ static ssize_t tun_get_user(struct tun_struct *tun,
 		break;
 	}
 
-	skb_reset_network_header(skb);
-
 	if (gso.gso_type != VIRTIO_NET_HDR_GSO_NONE) {
 		pr_debug("GSO!\n");
 		switch (gso.gso_type & ~VIRTIO_NET_HDR_GSO_ECN) {
@@ -745,8 +744,6 @@ static ssize_t tun_get_user(struct tun_struct *tun,
 			break;
 		case VIRTIO_NET_HDR_GSO_UDP:
 			skb_shinfo(skb)->gso_type = SKB_GSO_UDP;
-			if (skb->protocol == htons(ETH_P_IPV6))
-				ipv6_proxy_select_ident(skb);
 			break;
 		default:
 			tun->dev->stats.rx_frame_errors++;
@@ -798,41 +795,61 @@ static ssize_t tun_chr_aio_write(struct kiocb *iocb, const struct iovec *iv,
 
 // ------------- START of KNOX_VPN ------------------//
 
-/* KNOX VPN packets have extra bytes because they carry meta information by default 
+/* KNOX VPN packets have extra bytes because they carry meta information by default
      * Such packets have sizeof(struct tun_meta_header) extra bytes in the IP options
      * This automatically reflects in the IP header length (IHL)
      */
-static int knoxvpn_tun_uidpid(struct tun_struct *tun, struct sk_buff *skb, const struct iovec *iv, int* len, ssize_t* total)
+static int knoxvpn_process_uidpid(struct tun_struct *tun, struct sk_buff *skb,
+			      const struct iovec *iv, int *len, ssize_t * total)
 {
-	struct skb_shared_info * temp = NULL;
-	struct knox_meta_param metalocal = {0,0};
+	struct skb_shared_info *knox_shinfo = NULL;
+	struct knox_meta_param metalocal = { 0, 0 };
 
-	temp = skb_shinfo(skb);
-
-	if ((tun->flags & TUN_META_HDR) == 0 || skb == NULL || temp == NULL || temp->knox_mark < META_UID_PID_MARK_BASE_LOWER || META_UID_PID_MARK_BASE_UPPER < temp->knox_mark) {
-		metalocal.uid = 0;
-		metalocal.pid = 0;
-	}
+	if (skb != NULL)
+		knox_shinfo = skb_shinfo(skb);
 	else {
-		metalocal.uid = temp->uid;
-		metalocal.pid = temp->pid;
+		#ifdef TUN_DEBUG
+			pr_err("KNOX: NULL SKB in knoxvpn_process_uidpid");
+		#endif
+		return 0;
 	}
 
-	if(temp!=NULL){
-		temp->uid = 0;
-		temp->pid = 0;
+	if (knox_shinfo == NULL) {
+		#ifdef TUN_DEBUG
+			pr_err("KNOX: knox_shinfo value is null");
+		#endif
+			return 0;
+	}
+
+	if (knox_shinfo->knox_mark >= META_MARK_BASE_LOWER && knox_shinfo->knox_mark <= META_MARK_BASE_UPPER) {
+		metalocal.uid = knox_shinfo->uid;
+		metalocal.pid = knox_shinfo->pid;
+	}
+
+	if (knox_shinfo != NULL) {
+		knox_shinfo->uid = knox_shinfo->pid = 0;
+		knox_shinfo->knox_mark = 0;
 	}
 
 	if (tun->flags & TUN_META_HDR) {
-		#ifdef TUN_DEBUG
-		pr_err("KNOX: Appending uid: %d and pid: %d", metalocal.uid, metalocal.pid);
-		#endif
-		if (unlikely(memcpy_toiovecend(iv, (void *)&metalocal, (*total), sizeof(struct knox_meta_param)))) {
+#ifdef TUN_DEBUG
+		pr_err("KNOX: Appending uid: %d and pid: %d", metalocal.uid,
+		       metalocal.pid);
+#endif
+		if (unlikely
+		    (memcpy_toiovecend
+		     (iv, (void *)&metalocal, (*total),
+		      sizeof(struct knox_meta_param)))) {
+#ifdef TUN_DEBUG
+			pr_err("KNOX: Failed to copy buffer to userspace");
+#endif
 			return -1;
 		}
 		(*total) += TUN_META_HDR_SZ;
 	}
+
 	return 0;
+
 }
 
 // ------------- END of KNOX_VPN ------------------//
@@ -908,7 +925,7 @@ static ssize_t tun_put_user(struct tun_struct *tun,
 	}
 
 // ------------- START of KNOX_VPN ------------------//
-	if (knoxvpn_tun_uidpid(tun, skb, iv, &len, &total) < 0) {
+	if (knoxvpn_process_uidpid(tun, skb, iv, &len, &total) < 0) {
 		return -EINVAL;
 	}
 // ------------- END of KNOX_VPN ------------------//
@@ -990,8 +1007,6 @@ static ssize_t tun_chr_aio_read(struct kiocb *iocb, const struct iovec *iv,
 
 	ret = tun_do_read(tun, iocb, iv, len, file->f_flags & O_NONBLOCK);
 	ret = min_t(ssize_t, ret, len);
-	if (ret > 0)
-		iocb->ki_pos = ret;
 out:
 	tun_put(tun);
 	return ret;
@@ -1218,7 +1233,6 @@ static int tun_set_iff(struct net *net, struct file *file, struct ifreq *ifr)
 		tun->flags = flags;
 		tun->txflt.count = 0;
 		tun->vnet_hdr_sz = sizeof(struct virtio_net_hdr);
-		set_bit(SOCK_EXTERNALLY_ALLOCATED, &tun->socket.flags);
 
 		err = -ENOMEM;
 		sk = sk_alloc(&init_net, AF_UNSPEC, GFP_KERNEL, &tun_proto);
@@ -1375,12 +1389,10 @@ static long __tun_chr_ioctl(struct file *file, unsigned int cmd,
 	}
 #endif
 
-	if (cmd == TUNSETIFF || _IOC_TYPE(cmd) == 0x89) {
+	if (cmd == TUNSETIFF || _IOC_TYPE(cmd) == 0x89)
 		if (copy_from_user(&ifr, argp, ifreq_len))
 			return -EFAULT;
-	} else {
-		memset(&ifr, 0, sizeof(ifr));
-	}
+
 	if (cmd == TUNGETFEATURES) {
 		/* Currently this just means: "what IFF flags are valid?".
 		 * This is needed because we never checked for invalid flags on

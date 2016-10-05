@@ -2584,8 +2584,6 @@ int msm_comm_qbuf(struct vb2_buffer *vb)
 				dprintk(VIDC_DBG,
 					"Received EOS on output capability\n");
 			}
-
-#ifndef CONFIG_MSM_VIDC_IGNORE_YUV
 			/*Start : Qualcomm Local Patch - 20131226 */
 			if (vb->v4l2_buf.flags &
 				V4L2_MSM_BUF_FLAG_YUV_601_709_CLAMP) {
@@ -2595,7 +2593,6 @@ int msm_comm_qbuf(struct vb2_buffer *vb)
 					"Received buff with 601to709 clamp\n");
 			}
 			/*End : Qualcomm Local Patch - 20131226 */
-#endif
 
 			if (vb->v4l2_buf.flags &
 					V4L2_QCOM_BUF_FLAG_CODECCONFIG) {

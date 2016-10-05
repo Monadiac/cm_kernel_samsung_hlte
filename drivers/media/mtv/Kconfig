@@ -35,7 +35,15 @@ endchoice
 choice
 	depends on MTV
 	prompt "chip"
-
+	default MTV_FC8300
+	config MTV_FC8150
+		bool "FCI8150"
+	config MTV_FC8300
+		bool "FCI8300"
+	config MTV_MTV222
+		bool "MTV222"
+	config MTV_MTV23x
+		bool "MTV23x"
 endchoice
 
 config MTV_SPI

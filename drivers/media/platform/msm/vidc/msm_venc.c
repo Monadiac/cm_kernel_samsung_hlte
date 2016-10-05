@@ -1327,7 +1327,7 @@ static inline int venc_v4l2_to_hal(int id, int value)
 		default:
 			goto unknown_value;
 		}
-		/* H263 */
+	/* H263 */
 	case V4L2_CID_MPEG_VIDC_VIDEO_H263_PROFILE:
 		switch (value) {
 		case V4L2_MPEG_VIDC_VIDEO_H263_PROFILE_BASELINE:
@@ -3203,7 +3203,7 @@ int msm_venc_ctrl_init(struct msm_vidc_inst *inst)
 		dprintk(VIDC_WARN,
 				"Failed to setup super cluster\n");
 		return -EINVAL;
-		}
+	}
 
 	v4l2_ctrl_cluster(cluster_size, inst->cluster);
 

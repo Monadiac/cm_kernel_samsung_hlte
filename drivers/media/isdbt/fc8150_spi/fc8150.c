@@ -24,7 +24,6 @@
 #if defined(CONFIG_ISDBT_ANT_DET)
 static struct wake_lock isdbt_ant_wlock;
 #endif
-static struct wake_lock isdbt_wlock;
 
 #include "fc8150.h"
 #include "bbm.h"
@@ -446,7 +445,6 @@ int isdbt_open(struct inode *inode, struct file *filp)
 	fci_ringbuffer_init(&hOpen->RingBuffer, hOpen->buf, RING_BUFFER_SIZE);
 
 	filp->private_data = hOpen;
-	wake_lock(&isdbt_wlock);
 
 	return 0;
 }
@@ -504,7 +502,6 @@ int isdbt_release(struct inode *inode, struct file *filp)
 	list_del(&(hOpen->hList));
 	/* kfree(hOpen->buf); */
 	kfree(hOpen);
-	wake_unlock(&isdbt_wlock);
 
 	return 0;
 }
@@ -1071,10 +1068,9 @@ isdbt_gpio_init();
 		isdbt_kthread = kthread_run(isdbt_thread
 			, (void *)hInit, "isdbt_thread");
 	}
-	wake_lock_init(&isdbt_wlock, WAKE_LOCK_SUSPEND, "isdbt_wlock");
 
 	INIT_LIST_HEAD(&(hInit->hHead));
-#if defined(CONFIG_ISDBT_ANT_DET)
+#if defined(CONFIG_ISDBT_ANT_DET)	
 
 	wake_lock_init(&isdbt_ant_wlock, WAKE_LOCK_SUSPEND, "isdbt_ant_wlock");
 
@@ -1107,7 +1103,6 @@ static int isdbt_remove(struct platform_device *pdev)
 	isdbt_ant_det_irq_set(false);
 	wake_lock_destroy(&isdbt_ant_wlock);
 #endif
-	wake_lock_destroy(&isdbt_wlock);
 	return 0;
 }
 

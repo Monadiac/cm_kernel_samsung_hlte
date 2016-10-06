@@ -881,10 +881,10 @@ Consider:
 
 	CPU 1	   		CPU 2
 	=======================	=======================
-				LOAD B
-				DIVIDE		} Divide instructions generally
-				DIVIDE		} take a long time to perform
-				LOAD A
+	 	   		LOAD B
+	 	   		DIVIDE		} Divide instructions generally
+	 	   		DIVIDE		} take a long time to perform
+	 	   		LOAD A
 
 Which might appear as this:
 
@@ -909,11 +909,11 @@ load:
 
 	CPU 1	   		CPU 2
 	=======================	=======================
-				LOAD B
-				DIVIDE
-				DIVIDE
+	 	   		LOAD B
+	 	   		DIVIDE
+	 	   		DIVIDE
 				<read barrier>
-				LOAD A
+	 	   		LOAD A
 
 will force any value speculatively obtained to be reconsidered to an extent
 dependent on the type of barrier used.  If there was no change made to the
@@ -1883,8 +1883,8 @@ functions:
      space should suffice for PCI.
 
      [*] NOTE! attempting to load from the same location as was written to may
-	 cause a malfunction - consider the 16550 Rx/Tx serial registers for
-	 example.
+     	 cause a malfunction - consider the 16550 Rx/Tx serial registers for
+     	 example.
 
      Used with prefetchable I/O memory, an mmiowb() barrier may be required to
      force stores to be ordered.
@@ -2086,7 +2086,7 @@ CPU's caches by some other cache event:
 	p = &v;		q = p;
 			<D:request p>
 	<B:modify p=&v>	<D:commit p=&v>
-			<D:read p>
+		  	<D:read p>
 			x = *q;
 			<C:read *q>	Reads from v before v updated in cache
 			<C:unbusy>
@@ -2111,7 +2111,7 @@ queue before processing any further requests:
 	p = &v;		q = p;
 			<D:request p>
 	<B:modify p=&v>	<D:commit p=&v>
-			<D:read p>
+		  	<D:read p>
 			smp_read_barrier_depends()
 			<C:unbusy>
 			<C:commit v=2>

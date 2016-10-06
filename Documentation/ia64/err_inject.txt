@@ -1031,7 +1031,7 @@ int main(int argc, char **argv)
 				if (count!=PARA_FIELD_NUM+3) {
 				    line_para.err_data_buffer[0]=-1,
 				    line_para.err_data_buffer[1]=-1,
-				    line_para.err_data_buffer[2]=-1;
+			 	    line_para.err_data_buffer[2]=-1;
 				    count=sscanf(optarg, "%lx, %lx, %lx, %lx, %lx\n",
 						&line_para.cpu,
 						&line_para.loop,
@@ -1065,3 +1065,4 @@ int main(int argc, char **argv)
 
 	return 0;
 }
+

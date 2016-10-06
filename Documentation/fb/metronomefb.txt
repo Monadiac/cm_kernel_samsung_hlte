@@ -33,3 +33,4 @@ the physical media.
 Metronomefb uses the deferred IO interface so that it can provide a memory
 mappable frame buffer. It has been tested with tinyx (Xfbdev). It is known
 to work at this time with xeyes, xclock, xloadimage, xpdf.
+

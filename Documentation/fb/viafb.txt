@@ -249,3 +249,4 @@ Notes:
 --------------------
     Add the following line to your grub.conf:
     append = "video=viafb:viafb_mode=1024x768,viafb_bpp=32,viafb_refresh=85"
+

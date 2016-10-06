@@ -123,7 +123,7 @@ T:  Bus=dd Lev=dd Prnt=dd Port=dd Cnt=dd Dev#=ddd Spd=dddd MxCh=dd
 |__Topology info tag
 
     Speed may be:
-	1.5	Mbit/s for low speed USB
+    	1.5	Mbit/s for low speed USB
 	12	Mbit/s for full speed USB
 	480	Mbit/s for high speed USB (added for USB 2.0);
 		  also used for Wireless USB, which has no fixed speed

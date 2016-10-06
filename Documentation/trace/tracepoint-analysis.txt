@@ -71,15 +71,15 @@ were allocating the pages.
   global page_allocs
 
   probe kernel.trace("mm_page_alloc") {
-	page_allocs[execname()]++
+  	page_allocs[execname()]++
   }
 
   function print_count() {
-	printf ("%-25s %-s\n", "#Pages Allocated", "Process Name")
-	foreach (proc in page_allocs-)
-		printf("%-25d %s\n", page_allocs[proc], proc)
-	printf ("\n")
-	delete page_allocs
+  	printf ("%-25s %-s\n", "#Pages Allocated", "Process Name")
+  	foreach (proc in page_allocs-)
+  		printf("%-25d %s\n", page_allocs[proc], proc)
+  	printf ("\n")
+  	delete page_allocs
   }
 
   probe timer.s(5) {

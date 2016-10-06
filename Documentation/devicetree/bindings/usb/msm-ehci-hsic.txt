@@ -174,3 +174,4 @@ Example SMSC HSIC HUB :
 			hsic,data-pad-offset = <0x2054>;
 		};
 	};
+

@@ -71,3 +71,4 @@ it share the IRQ with some other piece of hardware.  IRQ sharing with
 VGA cards seems to cause trouble sometimes.  I've also seen funny
 effects with bttv sharing the IRQ with the ACPI bridge (and
 apci-enabled kernel).
+

@@ -118,3 +118,4 @@ static struct platform_device rotary_encoder_device = {
 		.platform_data = &my_rotary_encoder_info,
 	}
 };
+

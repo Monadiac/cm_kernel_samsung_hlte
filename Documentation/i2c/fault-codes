@@ -124,3 +124,4 @@ ETIMEDOUT
 	when a slave stretches clocks too far.  I2C has no such
 	timeouts, but it's normal for I2C adapters to impose some
 	arbitrary limits (much longer than SMBus!) too.
+

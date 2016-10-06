@@ -2197,3 +2197,4 @@ as follows:
 
   VIRTIO_BALLOON_S_MEMTOT The total amount of memory available
   (in bytes).
+

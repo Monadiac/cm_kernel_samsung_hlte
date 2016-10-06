@@ -201,3 +201,5 @@ Some web pages about the quickcams:
    http://phobos.illtel.denver.co.us/pub/qcread/ doesn't use v4l
    ftp://ftp.cs.unm.edu/pub/chris/quickcam/   Has lots of drivers
    http://www.cs.duke.edu/~reynolds/quickcam/ Has lots of information
+
+

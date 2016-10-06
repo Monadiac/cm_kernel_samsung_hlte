@@ -28,3 +28,4 @@ detection is done. You should instantiate the device explicitly.
 
 $ modprobe ds2482
 $ echo ds2482 0x18 > /sys/bus/i2c/devices/i2c-0/new_device
+

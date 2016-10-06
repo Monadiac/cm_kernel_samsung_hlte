@@ -22,7 +22,7 @@ Note: More extensive information for getting started with ext4 can be
     writing version 1.41.3) from:
 
     http://sourceforge.net/project/showfiles.php?group_id=2406
-
+	
 	or
 
     ftp://ftp.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/
@@ -39,9 +39,9 @@ Note: More extensive information for getting started with ext4 can be
 
   - Create a new filesystem using the ext4 filesystem type:
 
-	# mke2fs -t ext4 /dev/hda1
+    	# mke2fs -t ext4 /dev/hda1
 
-    Or to configure an existing ext3 filesystem to support extents:
+    Or to configure an existing ext3 filesystem to support extents: 
 
 	# tune2fs -O extents /dev/hda1
 
@@ -129,10 +129,10 @@ When mounting an ext4 filesystem, the following option are accepted:
 (*) == default
 
 ro                   	Mount filesystem read only. Note that ext4 will
-			replay the journal (and thus write to the
-			partition) even when mounted "read only". The
-			mount options "ro,noload" can be used to prevent
-			writes to the filesystem.
+                     	replay the journal (and thus write to the
+                     	partition) even when mounted "read only". The
+                     	mount options "ro,noload" can be used to prevent
+		     	writes to the filesystem.
 
 journal_checksum	Enable checksumming of the journal transactions.
 			This will allow the recovery code in e2fsck and the
@@ -152,9 +152,9 @@ journal_dev=devnum	When the external journal device's major/minor numbers
 
 norecovery		Don't load the journal on mounting.  Note that
 noload			if the filesystem was not unmounted cleanly,
-			skipping the journal replay will lead to the
-			filesystem containing inconsistencies that can
-			lead to any number of problems.
+                     	skipping the journal replay will lead to the
+                     	filesystem containing inconsistencies that can
+                     	lead to any number of problems.
 
 data=journal		All data are committed into the journal prior to being
 			written into the main file system.  Enabling
@@ -311,7 +311,7 @@ journal_ioprio=prio	The I/O priority (from 0 to 7, where 0 is the
 			a slightly higher priority than the default I/O
 			priority.
 
-auto_da_alloc(*)	Many broken applications don't use fsync() when
+auto_da_alloc(*)	Many broken applications don't use fsync() when 
 noauto_da_alloc		replacing existing files via patterns such as
 			fd = open("foo.new")/write(fd,..)/close(fd)/
 			rename("foo.new", "foo"), or worse yet,

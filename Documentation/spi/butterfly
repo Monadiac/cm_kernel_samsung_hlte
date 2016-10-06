@@ -65,3 +65,4 @@ of spare parport pins to wire this one up, such as:
 
 	IRQ	= J402.PF4	= pin 10/S6,ACK
 	GND	= J402.GND(P2)	= pin 25/GND
+

@@ -1,5 +1,5 @@
 Intel 810/815 Framebuffer driver
-	Tony Daplas <adaplas@pol.net>
+ 	Tony Daplas <adaplas@pol.net>
 	http://i810fb.sourceforge.net
 
 	March 17, 2002
@@ -45,7 +45,7 @@ B.  Features
 	- Can concurrently run with xfree86 running with native i810 drivers
 
 	- Hardware Cursor Support
-
+ 
 	- Supports EDID probing either by DDC/I2C or through the BIOS
 
 C.  List of available options
@@ -230,7 +230,7 @@ F.  Setup
 	b. Under "Code maturity level options" enable "Prompt for development
 	   and/or incomplete code/drivers".
 
-	c. Enable agpgart support for the Intel 810/815 on-board graphics.
+ 	c. Enable agpgart support for the Intel 810/815 on-board graphics.
 	   This is required.  The option is under "Character Devices".
 
 	d. Under "Graphics Support", select "Intel 810/815" either statically
@@ -275,3 +275,4 @@ H.  Home Page:
 
 ###########################
 Tony
+

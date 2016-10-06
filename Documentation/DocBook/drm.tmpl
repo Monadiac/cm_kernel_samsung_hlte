@@ -256,8 +256,8 @@
     </para>
     <programlisting>
       static struct drm_driver driver = {
-	...
-	.load = i915_driver_load,
+      	...
+      	.load = i915_driver_load,
         ...
       };
     </programlisting>
@@ -414,11 +414,11 @@
 	</para>
 	<programlisting>
 	  struct ttm_global_reference {
-		enum ttm_global_types global_type;
-		size_t size;
-		void *object;
-		int (*init) (struct ttm_global_reference *);
-		void (*release) (struct ttm_global_reference *);
+	  	enum ttm_global_types global_type;
+	  	size_t size;
+	  	void *object;
+	  	int (*init) (struct ttm_global_reference *);
+	  	void (*release) (struct ttm_global_reference *);
 	  };
 	</programlisting>
 	<para>

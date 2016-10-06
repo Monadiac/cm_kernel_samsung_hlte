@@ -12,7 +12,7 @@ What is SCFS
 ============
 
 1. Overview
-SCFS is a proprietary filesystem developed for Samsung Android devices. Akin to
+SCFS is a proprietary filesystem developed for Samsung Android devices. Akin to 
 the eCryptFS, SCFS is stackable on top of a native, "lower" filesystem, and is
 designed to provide per-cluster compression feature. Cluster size, compression
 algorithm type, and compression ratio threshold (CRT) are configurable parameters
@@ -60,7 +60,7 @@ Usage Guide
 
   mount -t scfs -o [ro|rw] <lower_dir> <upper_dir>
 
-    ro,rw (default)     same as ext4
+    ro,rw (default)     same as ext4		
 
     <lower_dir>         mountpoint for the compressed system partition
                         (/.system)

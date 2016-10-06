@@ -212,3 +212,4 @@ presentation on krefs, which can be found at:
   http://www.kroah.com/linux/talks/ols_2004_kref_paper/Reprint-Kroah-Hartman-OLS2004.pdf
 and:
   http://www.kroah.com/linux/talks/ols_2004_kref_talk/
+

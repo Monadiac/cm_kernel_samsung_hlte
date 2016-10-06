@@ -260,3 +260,4 @@ Linux では、他のどのオペレーティングシステムよりも数多�
 この文書の初期の草稿に対し、Randy Dunlap, Andrew Morton, David
 Brownell, Hanna Linder, Robert Love, Nishanth Aravamudan から査読
 と助言を頂きました。感謝申し上げます。
+

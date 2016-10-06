@@ -186,3 +186,4 @@ from the Video BIOS if you set pixclock to 0 in fb_var_screeninfo.
  Last updated: 2009-03-30
 
  Documentation of the uvesafb options is loosely based on vesafb.txt.
+

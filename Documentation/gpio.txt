@@ -658,13 +658,13 @@ The control interfaces are write-only:
 
     /sys/class/gpio/
 
-	"export" ... Userspace may ask the kernel to export control of
+    	"export" ... Userspace may ask the kernel to export control of
 		a GPIO to userspace by writing its number to this file.
 
 		Example:  "echo 19 > export" will create a "gpio19" node
 		for GPIO #19, if that's not requested by kernel code.
 
-	"unexport" ... Reverses the effect of exporting to userspace.
+    	"unexport" ... Reverses the effect of exporting to userspace.
 
 		Example:  "echo 19 > unexport" will remove a "gpio19"
 		node exported using the "export" file.
@@ -719,11 +719,11 @@ read-only attributes:
 
     /sys/class/gpio/gpiochipN/
 
-	"base" ... same as N, the first GPIO managed by this chip
+    	"base" ... same as N, the first GPIO managed by this chip
 
-	"label" ... provided for diagnostics (not always unique)
+    	"label" ... provided for diagnostics (not always unique)
 
-	"ngpio" ... how many GPIOs this manges (N to N + ngpio - 1)
+    	"ngpio" ... how many GPIOs this manges (N to N + ngpio - 1)
 
 Board documentation should in most cases cover what GPIOs are used for
 what purposes.  However, those numbers are not always stable; GPIOs on

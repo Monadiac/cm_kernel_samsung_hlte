@@ -51,3 +51,4 @@ and even a reference to how to decode a bi-phase data stream.
 
 http://www.xs4all.nl/~sbp/knowledge/ir/rc5.htm
 still more info
+

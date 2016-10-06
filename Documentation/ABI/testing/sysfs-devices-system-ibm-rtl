@@ -18,3 +18,5 @@ Description:    The version file provides a means by which to query
                 the RTL table version that lives in the Extended
                 BIOS Data Area (EBDA).
 Users:          The ibm-prtm userspace daemon uses this interface.
+
+

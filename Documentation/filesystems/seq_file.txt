@@ -263,9 +263,9 @@ If your file will be iterating through a linked list, you may find these
 routines useful:
 
 	struct list_head *seq_list_start(struct list_head *head,
-					 loff_t pos);
+	       		 		 loff_t pos);
 	struct list_head *seq_list_start_head(struct list_head *head,
-					      loff_t pos);
+			 		      loff_t pos);
 	struct list_head *seq_list_next(void *v, struct list_head *head,
 					loff_t *ppos);
 

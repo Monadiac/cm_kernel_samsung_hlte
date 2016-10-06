@@ -114,7 +114,7 @@ POTENTIAL ATTRIBUTE ALIASING CASES
 
     mmap of /proc/bus/pci/.../??.?
 
-	This is an MMIO mmap of PCI functions, which additionally may or
+    	This is an MMIO mmap of PCI functions, which additionally may or
 	may not be requested as using the WC attribute.
 
 	If WC is requested, and the region in kern_memmap is either WC

@@ -265,22 +265,22 @@ BIOS Revision: 0x5
 
 /proc/mca/pos:
 Slot 1: ff 8e f1 fc a0 ff ff ff  IBM SCSI Adapter w/Cache
-Slot 2: ff ff ff ff ff ff ff ff
-Slot 3: 1f 0f 81 3b bf b6 ff ff
-Slot 4: ff ff ff ff ff ff ff ff
-Slot 5: db 8f 1d 5e fd c0 00 00
-Slot 6: ff ff ff ff ff ff ff ff
+Slot 2: ff ff ff ff ff ff ff ff  
+Slot 3: 1f 0f 81 3b bf b6 ff ff  
+Slot 4: ff ff ff ff ff ff ff ff  
+Slot 5: db 8f 1d 5e fd c0 00 00  
+Slot 6: ff ff ff ff ff ff ff ff  
 Slot 7: 42 60 ff 08 ff ff ff ff  3Com 3c523 Etherlink/MC
-Slot 8: ff ff ff ff ff ff ff ff
-Video : ff ff ff ff ff ff ff ff
-SCSI  : ff ff ff ff ff ff ff ff
+Slot 8: ff ff ff ff ff ff ff ff  
+Video : ff ff ff ff ff ff ff ff  
+SCSI  : ff ff ff ff ff ff ff ff  
 
 /proc/mca/slot1:
 Slot: 1
 Adapter Name: IBM SCSI Adapter w/Cache
 Id: 8eff
 Enabled: Yes
-POS: ff 8e f1 fc a0 ff ff ff
+POS: ff 8e f1 fc a0 ff ff ff 
 Subsystem PUN: 7
 Detected at boot: Yes
 
@@ -289,21 +289,21 @@ Slot: 3
 Adapter Name: Unknown
 Id: 0f1f
 Enabled: Yes
-POS: 1f 0f 81 3b bf b6 ff ff
+POS: 1f 0f 81 3b bf b6 ff ff 
 
 /proc/mca/slot5:
 Slot: 5
 Adapter Name: Unknown
 Id: 8fdb
 Enabled: Yes
-POS: db 8f 1d 5e fd c0 00 00
+POS: db 8f 1d 5e fd c0 00 00 
 
 /proc/mca/slot7:
 Slot: 7
 Adapter Name: 3Com 3c523 Etherlink/MC
 Id: 6042
 Enabled: Yes
-POS: 42 60 ff 08 ff ff ff ff
+POS: 42 60 ff 08 ff ff ff ff 
 Revision: 0xe
 IRQ: 9
 IO Address: 0x3300-0x3308

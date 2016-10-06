@@ -99,9 +99,9 @@ may work well if you handle JS_EVENT_INIT events separately,
 
 	if ((js_event.type & ~JS_EVENT_INIT) == JS_EVENT_BUTTON) {
 		if (js_event.value)
-			buttons_state |= (1 << js_event.number);
-		else
-			buttons_state &= ~(1 << js_event.number);
+	        	buttons_state |= (1 << js_event.number);
+	   	else
+	      		buttons_state &= ~(1 << js_event.number);
 	}
 
 is much safer since it can't lose sync with the driver. As you would
@@ -145,13 +145,13 @@ For example,
 
 	while (1) {
 		while (read (fd, &e, sizeof(struct js_event)) > 0) {
-			process_event (e);
-		}
-		/* EAGAIN is returned when the queue is empty */
-		if (errno != EAGAIN) {
-			/* error */
-		}
-		/* do something interesting with processed events */
+	        	process_event (e);
+	   	}
+	   	/* EAGAIN is returned when the queue is empty */
+	   	if (errno != EAGAIN) {
+	      		/* error */
+	   	}
+	   	/* do something interesting with processed events */
 	}
 
 One reason for emptying the queue is that if it gets full you'll start
@@ -269,9 +269,9 @@ The driver offers backward compatibility, though. Here's a quick summary:
 	struct JS_DATA_TYPE js;
 	while (1) {
 		if (read (fd, &js, JS_RETURN) != JS_RETURN) {
-			/* error */
-		}
-		usleep (1000);
+	      		/* error */
+	   	}
+	   	usleep (1000);
 	}
 
 As you can figure out from the example, the read returns immediately,

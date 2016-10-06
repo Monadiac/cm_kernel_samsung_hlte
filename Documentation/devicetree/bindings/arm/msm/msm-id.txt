@@ -22,3 +22,4 @@ Example:
 
    qcom,board-id= <15 2>;
    qcom,msm-id = <126 0>;
+

@@ -363,3 +363,4 @@ Example:
 				<5 1 2 4 14>;
 		qcom,cpr-quot-adjust-scaling-factor-max = <650>;
 	};
+

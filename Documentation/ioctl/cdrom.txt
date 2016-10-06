@@ -785,7 +785,7 @@ CDROM_LOCKDOOR			lock or unlock door
 	error returns:
 	  EDRIVE_CANT_DO_THIS	Door lock function not supported.
 	  EBUSY			Attempt to unlock when multiple users
-				have the drive open and not CAP_SYS_ADMIN
+	  			have the drive open and not CAP_SYS_ADMIN
 
 	notes:
 	  As of 2.6.8.1, the lock flag is a global lock, meaning that
@@ -861,7 +861,7 @@ DVD_READ_STRUCT			Read structure
 	inputs:
 	  dvd_struct structure, containing:
 	    type		specifies the information desired, one of
-				DVD_STRUCT_PHYSICAL, DVD_STRUCT_COPYRIGHT,
+	    			DVD_STRUCT_PHYSICAL, DVD_STRUCT_COPYRIGHT,
 				DVD_STRUCT_DISCKEY, DVD_STRUCT_BCA,
 				DVD_STRUCT_MANUFACT
 	    physical.layer_num	desired layer, indexed from 0

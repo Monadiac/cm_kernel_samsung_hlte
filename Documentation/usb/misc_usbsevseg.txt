@@ -42,3 +42,5 @@ Device Operation
 	To set multiple decimals points sum up each power.
 	For example, to set the 0th and 3rd decimal place
 	echo 1001 > /sys/bus/usb/.../decimals
+
+

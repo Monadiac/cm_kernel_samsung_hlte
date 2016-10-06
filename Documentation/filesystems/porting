@@ -94,9 +94,9 @@ protected.
 ---
 [mandatory]
 
-BKL is also moved from around sb operations.  ->write_super() Is now called
+BKL is also moved from around sb operations.  ->write_super() Is now called 
 without BKL held.  BKL should have been shifted into individual fs sb_op
-functions.  If you don't need it, remove it.
+functions.  If you don't need it, remove it.  
 
 ---
 [informational]
@@ -388,7 +388,7 @@ Documentation/filesystems/vfs.txt for more details.
 on many or all directory inodes on the way down a path walk (to check for
 exec permission). These must now be rcu-walk aware (flags & IPERM_FLAG_RCU).
 See Documentation/filesystems/vfs.txt for more details.
-
+ 
 --
 [mandatory]
 	In ->fallocate() you must check the mode option passed in.  If your
@@ -434,4 +434,4 @@ release it yourself.
 [mandatory]
 	d_alloc_root() is gone, along with a lot of bugs caused by code
 misusing it.  Replacement: d_make_root(inode).  The difference is,
-d_make_root() drops the reference to inode if dentry allocation fails.
+d_make_root() drops the reference to inode if dentry allocation fails.  

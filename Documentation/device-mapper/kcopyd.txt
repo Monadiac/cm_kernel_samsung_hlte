@@ -44,3 +44,4 @@ kcopyd_client_destroy() to delete the kcopyd client, which will release the
 associated memory pages.
 
    void kcopyd_client_destroy(struct kcopyd_client *kc);
+

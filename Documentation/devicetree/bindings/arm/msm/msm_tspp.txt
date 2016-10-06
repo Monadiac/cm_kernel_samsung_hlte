@@ -89,3 +89,5 @@ Example (for 8974 platform, avaialble at msm8974.dtsi):
 				<82 512 0 0>, /* No vote */
 				<82 512 12288 24576>; /* Max. bandwidth, 2xTSIF, each max of 96Mbps */
 	};
+
+

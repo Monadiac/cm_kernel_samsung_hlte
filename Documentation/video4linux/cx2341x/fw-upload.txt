@@ -46,3 +46,4 @@ How to load
   to re-enable the VPU.
 - Sleep for 1 second.
 - Issue status API commands to both firmware images to verify.
+

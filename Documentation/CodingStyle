@@ -13,7 +13,7 @@ and NOT read it.  Burn them, it's a great symbolic gesture.
 Anyway, here goes:
 
 
-		Chapter 1: Indentation
+	 	Chapter 1: Indentation
 
 Tabs are 8 characters, and thus indentations are also 8 characters.
 There are heretic movements that try to make indentations 4 (or even 2!)
@@ -845,3 +845,4 @@ language C, URL: http://www.open-std.org/JTC1/SC22/WG14/
 
 Kernel CodingStyle, by greg@kroah.com at OLS 2002:
 http://www.kroah.com/linux/talks/ols_2002_kernel_codingstyle_talk/html/
+

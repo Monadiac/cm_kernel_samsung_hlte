@@ -34,3 +34,4 @@ Notify event through /proc/acpi/event:
 #define ACPI_VIDEO_NOTIFY_DEC_BRIGHTNESS        0x84
 #define ACPI_VIDEO_NOTIFY_ZERO_BRIGHTNESS       0x85
 #define ACPI_VIDEO_NOTIFY_DISPLAY_OFF           0x86
+

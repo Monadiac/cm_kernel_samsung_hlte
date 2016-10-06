@@ -40,3 +40,4 @@ Example:
 			summit,term-current-ma = <200>;
 		};
 	};
+

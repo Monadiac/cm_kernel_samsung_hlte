@@ -125,19 +125,19 @@ const char *get_system_type(void)
 
 int __init platform_setup(void)
 {
-	/*
+  	/*
 	 * If our hardware actually existed, we would do real
 	 * setup here. Though it's also sane to leave this empty
 	 * if there's no real init work that has to be done for
 	 * this board.
 	 */
 
-	/*
+  	/* 
 	 * Presume all FooTech boards have the same broken timer,
 	 * and also presume that we've defined foo_timer_init to
 	 * do something useful.
 	 */
-	board_time_init = foo_timer_init;
+  	board_time_init = foo_timer_init;
 
 	/* Start-up imaginary PCI ... */
 
@@ -183,7 +183,7 @@ sufficient.
    __IO_PREFIX to something sensible. A typical example would be:
 
 	#define __IO_PREFIX vapor
-	#include <asm/io_generic.h>
+   	#include <asm/io_generic.h>
 
    somewhere in the board-specific header. Any boards being ported that still
    have a legacy io.h should remove it entirely and switch to the new model.

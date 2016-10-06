@@ -118,10 +118,10 @@ For userland the following interfaces are available using the sysfs interface:
 	   show_icon    Write, display the element by writing the icon name.
 
 	   map_seg7	Read/Write, the 7 segments char set, common for all
-			yealink phones. (see map_to_7segment.h)
+	   		yealink phones. (see map_to_7segment.h)
 
 	   ringtone	Write, upload binary representation of a ringtone,
-			see yealink.c. status EXPERIMENTAL due to potential
+	   		see yealink.c. status EXPERIMENTAL due to potential
 			races between async. and sync usb calls.
 
 
@@ -213,3 +213,4 @@ limit of the device.
 	the reverse engineering.
   - Martin Diehl, for pointing out how to handle USB memory allocation.
   - Dmitry Torokhov, for the numerous code reviews and suggestions.
+

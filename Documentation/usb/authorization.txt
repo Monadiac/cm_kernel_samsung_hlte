@@ -89,3 +89,4 @@ verification stuff with PKI, so you don't depend on a shared secret,
 etc, but you get the idea. Anybody with access to a device gadget kit
 can fake descriptors and device info. Don't trust that. You are
 welcome.
+

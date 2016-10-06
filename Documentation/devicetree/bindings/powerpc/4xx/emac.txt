@@ -145,3 +145,4 @@
     - revision           : as provided by the RGMII new version register if
 			   available.
 			   For Axon: 0x0000012a
+

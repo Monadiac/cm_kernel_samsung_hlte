@@ -87,7 +87,7 @@ General behavior and description of data formats/protocol.
       On incoming calls, if the application responds to a RING
       with ATA, depending on the calling service, the emulator
       responds with either CONNECT (data call) or VCON (voice call).
-
+      
       On outgoing voice calls, the emulator responds with VCON
       upon connection setup.
 
@@ -135,3 +135,4 @@ General behavior and description of data formats/protocol.
     AT-command-line (i.e.: "AT+VTX+VRX"), full-duplex-mode is selected.
 	In this mode, the only way to stop recording is sending <DLE><DC4>
     and the only way to stop playback is to send <DLE><ETX>.
+

@@ -28,3 +28,4 @@ RS485 example for Atmel USART:
 		linux,rs485-enabled-at-boot-time;
 		rs485-rts-delay = <0 200>;		// in milliseconds
 	};
+

@@ -47,7 +47,7 @@ maxcpus=n    Restrict boot time cpus to n. Say if you have 4 cpus, using
              other cpus later online, read FAQ's for more info.
 
 additional_cpus=n (*)	Use this to limit hotpluggable cpus. This option sets
-			cpu_possible_mask = cpu_present_mask + additional_cpus
+  			cpu_possible_mask = cpu_present_mask + additional_cpus
 
 cede_offline={"off","on"}  Use this option to disable/enable putting offlined
 		            processors to an extended H_CEDE state on

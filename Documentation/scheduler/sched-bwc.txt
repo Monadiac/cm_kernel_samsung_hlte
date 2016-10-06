@@ -119,3 +119,4 @@ Examples
 
 	By using a small period here we are ensuring a consistent latency
 	response at the expense of burst capacity.
+

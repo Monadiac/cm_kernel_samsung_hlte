@@ -78,7 +78,7 @@
 	platforms without code changes.
     </para>
     <para>
-	This documentation is provided to developers who want to implement
+  	This documentation is provided to developers who want to implement
 	an interrupt subsystem based for their architecture, with the help
 	of the generic IRQ handling layer.
     </para>
@@ -235,7 +235,7 @@
 	<sect2 id="Default_flow_implementations">
 	<title>Default flow implementations</title>
 	    <sect3 id="Helper_functions">
-		<title>Helper functions</title>
+	 	<title>Helper functions</title>
 		<para>
 		The helper functions call the chip primitives and
 		are used by the default flow implementations.
@@ -278,7 +278,7 @@ noop(struct irq_data *data))
 	<sect2 id="Default_flow_handler_implementations">
 	<title>Default flow handler implementations</title>
 	    <sect3 id="Default_Level_IRQ_flow_handler">
-		<title>Default Level IRQ flow handler</title>
+	 	<title>Default Level IRQ flow handler</title>
 		<para>
 		handle_level_irq provides a generic implementation
 		for level-triggered interrupts.
@@ -308,7 +308,7 @@ desc->irq_data.chip->irq_eoi();
 		</para>
 	    </sect3>
 	    <sect3 id="Default_Edge_IRQ_flow_handler">
-		<title>Default Edge IRQ flow handler</title>
+	 	<title>Default Edge IRQ flow handler</title>
 		<para>
 		handle_edge_irq provides a generic implementation
 		for edge-triggered interrupts.
@@ -332,9 +332,9 @@ do {
 desc->status &amp;= ~running;
 		</programlisting>
 		</para>
-	    </sect3>
+   	    </sect3>
 	    <sect3 id="Default_simple_IRQ_flow_handler">
-		<title>Default simple IRQ flow handler</title>
+	 	<title>Default simple IRQ flow handler</title>
 		<para>
 		handle_simple_irq provides a generic implementation
 		for simple interrupts.
@@ -349,9 +349,9 @@ desc->status &amp;= ~running;
 handle_irq_event(desc->action);
 		</programlisting>
 		</para>
-	    </sect3>
+   	    </sect3>
 	    <sect3 id="Default_per_CPU_flow_handler">
-		<title>Default per CPU flow handler</title>
+	 	<title>Default per CPU flow handler</title>
 		<para>
 		handle_percpu_irq provides a generic implementation
 		for per CPU interrupts.
@@ -371,22 +371,22 @@ if (desc->irq_data.chip->irq_eoi)
         desc->irq_data.chip->irq_eoi();
 		</programlisting>
 		</para>
-	    </sect3>
+   	    </sect3>
 	    <sect3 id="EOI_Edge_IRQ_flow_handler">
-		<title>EOI Edge IRQ flow handler</title>
+	 	<title>EOI Edge IRQ flow handler</title>
 		<para>
 		handle_edge_eoi_irq provides an abnomination of the edge
 		handler which is solely used to tame a badly wreckaged
 		irq controller on powerpc/cell.
 		</para>
-	    </sect3>
+   	    </sect3>
 	    <sect3 id="BAD_IRQ_flow_handler">
-		<title>Bad IRQ flow handler</title>
+	 	<title>Bad IRQ flow handler</title>
 		<para>
 		handle_bad_irq is used for spurious interrupts which
 		have no real handler assigned..
 		</para>
-	    </sect3>
+   	    </sect3>
 	</sect2>
 	<sect2 id="Quirks_and_optimizations">
 	<title>Quirks and optimizations</title>

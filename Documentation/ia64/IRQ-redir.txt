@@ -66,3 +66,4 @@ For systems like the NEC AzusA we get IRQ node-affinity for free. This
 is because usually the chipsets on each node redirect the interrupts
 only to their own CPUs (as they cannot see the XTP registers on the
 other nodes).
+

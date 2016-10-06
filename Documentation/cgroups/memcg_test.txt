@@ -91,7 +91,7 @@ Under below explanation, we assume CONFIG_MEM_RES_CTRL_SWAP=y.
 	Anonymous page is newly allocated at
 		  - page fault into MAP_ANONYMOUS mapping.
 		  - Copy-On-Write.
-	It is charged right after it's allocated before doing any page table
+ 	It is charged right after it's allocated before doing any page table
 	related operations. Of course, it's uncharged when another page is used
 	for the fault address.
 
@@ -167,7 +167,7 @@ Under below explanation, we assume CONFIG_MEM_RES_CTRL_SWAP=y.
 	Here, a charge in swap_cgroup disappears.
 
 5. Page Cache
-	Page Cache is charged at
+   	Page Cache is charged at
 	- add_to_page_cache_locked().
 
 	uncharged at
@@ -199,7 +199,7 @@ Under below explanation, we assume CONFIG_MEM_RES_CTRL_SWAP=y.
 	  disappears.
 
 7. Page Migration
-	One of the most complicated functions is page-migration-handler.
+   	One of the most complicated functions is page-migration-handler.
 	Memcg has 2 routines. Assume that we are migrating a page's contents
 	from OLDPAGE to NEWPAGE.
 

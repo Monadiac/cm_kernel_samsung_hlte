@@ -50,7 +50,7 @@ element size and total will be checked for validity at compile time.
 Storing data into a flexible array is accomplished with a call to:
 
     int flex_array_put(struct flex_array *array, unsigned int element_nr,
-		       void *src, gfp_t flags);
+    		       void *src, gfp_t flags);
 
 This call will copy the data from src into the array, in the position
 indicated by element_nr (which must be less than the maximum specified when

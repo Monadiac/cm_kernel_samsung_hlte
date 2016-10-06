@@ -261,7 +261,7 @@ such a method has a form like:
 
     void my_object_release(struct kobject *kobj)
     {
-	    struct my_object *mine = container_of(kobj, struct my_object, kobj);
+    	    struct my_object *mine = container_of(kobj, struct my_object, kobj);
 
 	    /* Perform any additional cleanup on this object, then... */
 	    kfree(mine);

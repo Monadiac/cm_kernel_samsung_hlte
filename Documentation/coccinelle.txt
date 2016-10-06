@@ -29,7 +29,7 @@ pages at http://cocci.ekstranet.diku.dk/wiki/doku.php
 
 Once you have it, run the following command:
 
-	./configure
+     	./configure
         make
 
 as a regular user, and install it with
@@ -110,7 +110,7 @@ To apply Coccinelle to a specific directory, M= can be used.
 For example, to check drivers/net/wireless/ one may write:
 
     make coccicheck M=drivers/net/wireless/
-
+    
 To apply Coccinelle on a file basis, instead of a directory basis, the
 following command may be used:
 
@@ -207,14 +207,14 @@ diff -u -p a/crypto/ctr.c b/crypto/ctr.c
 --- a/crypto/ctr.c 2010-05-26 10:49:38.000000000 +0200
 +++ b/crypto/ctr.c 2010-06-03 23:44:49.000000000 +0200
 @@ -185,7 +185,7 @@ static struct crypto_instance *crypto_ct
-	alg = crypto_attr_alg(tb[1], CRYPTO_ALG_TYPE_CIPHER,
-				  CRYPTO_ALG_TYPE_MASK);
-	if (IS_ERR(alg))
+ 	alg = crypto_attr_alg(tb[1], CRYPTO_ALG_TYPE_CIPHER,
+ 				  CRYPTO_ALG_TYPE_MASK);
+ 	if (IS_ERR(alg))
 -		return ERR_PTR(PTR_ERR(alg));
 +		return ERR_CAST(alg);
-
-	/* Block size must be >= 4 bytes. */
-	err = -EINVAL;
+ 
+ 	/* Block size must be >= 4 bytes. */
+ 	err = -EINVAL;
 
  Detailed description of the 'context' mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -250,13 +250,13 @@ diff -u -p /home/user/linux/crypto/ctr.c /tmp/nothing
 --- /home/user/linux/crypto/ctr.c	2010-05-26 10:49:38.000000000 +0200
 +++ /tmp/nothing
 @@ -185,7 +185,6 @@ static struct crypto_instance *crypto_ct
-	alg = crypto_attr_alg(tb[1], CRYPTO_ALG_TYPE_CIPHER,
-				  CRYPTO_ALG_TYPE_MASK);
-	if (IS_ERR(alg))
+ 	alg = crypto_attr_alg(tb[1], CRYPTO_ALG_TYPE_CIPHER,
+ 				  CRYPTO_ALG_TYPE_MASK);
+ 	if (IS_ERR(alg))
 -		return ERR_PTR(PTR_ERR(alg));
-
-	/* Block size must be >= 4 bytes. */
-	err = -EINVAL;
+ 
+ 	/* Block size must be >= 4 bytes. */
+ 	err = -EINVAL;
 
  Detailed description of the 'org' mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

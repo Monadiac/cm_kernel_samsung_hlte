@@ -157,3 +157,4 @@ access those physical address ranges.
 Another, more verbose way of getting PAT related debug messages is with
 "debugpat" boot parameter. With this parameter, various debug messages are
 printed to dmesg log.
+

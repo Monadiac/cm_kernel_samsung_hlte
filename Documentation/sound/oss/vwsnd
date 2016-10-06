@@ -219,7 +219,7 @@ least significant byte.  In C, we would say this.
 
 	...
 
-		assert(leftgain >= 0 && leftgain <= 100);
+	 	assert(leftgain >= 0 && leftgain <= 100);
 		assert(rightgain >= 0 && rightgain <= 100);
 		arg = leftgain | rightgain << 8;
 
@@ -265,7 +265,7 @@ structures to access any of the five channels' gains.
 		*left = gp->min_gain + gp->gain_step * lg;
 		*right = gp->min_gain + gp->gain_step * rg;
 		return 0;
-	}
+	}	
 
 And here is the corresponding routine to set a channel's gain in dB.
 
@@ -290,3 +290,4 @@ And here is the corresponding routine to set a channel's gain in dB.
 
 		return ioctl(fd, MIXER_WRITE(gp->chan), &word);
 	}
+

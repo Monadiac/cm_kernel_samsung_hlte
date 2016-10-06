@@ -46,7 +46,7 @@ The 0.3.4 version of the driver is the first GPL release.  Several
 features had to be removed from the prior binary only module, mostly
 for reasons of Intellectual Property rights.  We can't release
 information that is not ours - so certain aspects of the driver had to
-be removed to protect the rights of others.
+be removed to protect the rights of others.  
 
 Specifically, very old Internet PhoneJACK cards have non-standard
 G.723.1 codecs (due to the early nature of the DSPs in those days).
@@ -57,12 +57,12 @@ it's only the very old cards that are affected.
 
 Also, the code to download G.728/G.729/G.729a codecs to the DSP is
 available as a binary only module as well.  This IP is not ours to
-release.
+release.  
 
 Hooks are built into the GPL driver to allow it to work with other
 companion modules that are completely separate from this module.
 
-1.2 Copyright, Trademarks, Disclaimer, & Credits
+1.2 Copyright, Trademarks, Disclaimer, & Credits 
 
 Copyright
 
@@ -93,9 +93,9 @@ Credits
 This HOWTO was written by:
 
 	Greg Herlein <gherlein@quicknet.net>
-	Ed Okerson <eokerson@quicknet.net>
+	Ed Okerson <eokerson@quicknet.net> 
 
-1.3  Future Plans: You Can Help
+1.3  Future Plans: You Can Help 
 
 Please let the maintainer know of any errors in facts, opinions,
 logic, spelling, grammar, clarity, links, etc.  But first, if the date
@@ -128,7 +128,7 @@ In the body of the email, type:
 Please delete any signature block that you would normally add to the
 bottom of your email - it tends to confuse majordomo.
 
-To send mail to the list, address your mail to
+To send mail to the list, address your mail to 
 
    linux-sdk@linux.quicknet.net
 
@@ -176,7 +176,7 @@ The isapnp autoconfiguration is available on the Quicknet website at:
 though it may be in the kernel by the time you read this.
 
 
-3.0  Card Configuration
+3.0  Card Configuration 
 
 If you did not get your drivers as part of the linux kernel, do the
 following to install them:
@@ -189,8 +189,8 @@ subdirectory.
 
    b.  run the "ixj_dev_create" script to remove any stray device
 files left in the /dev directory, and to create the new officially
-designated device files.  Note that the old devices were called
-/dev/ixj, and the new method uses /dev/phone.
+designated device files.  Note that the old devices were called 
+/dev/ixj, and the new method uses /dev/phone.  
 
    c.  type "make;make install" - this will compile and install the
 module.
@@ -219,7 +219,7 @@ module.
       e2.  go to the /etc directory and run pnpdump to get a blank
            isapnp.conf file.
 
-		pnpdump > /etc/isapnp.conf
+	   	pnpdump > /etc/isapnp.conf
 
       e3.  edit the /etc/isapnp.conf file to set the IO warnings and
            the register IO addresses. The IO warnings means that you
@@ -309,21 +309,21 @@ following lines:
 If you do this, then when you execute an application that uses the
 module the kernel will request that it is loaded.
 
-  h.  if you want non-root users to be able to read and write to the
+  h.  if you want non-root users to be able to read and write to the 
 ixj devices (this is a good idea!) you should do the following:
 
-     - decide upon a group name to use and create that group if
-       needed.  Add the user names to that group that you wish to
+     - decide upon a group name to use and create that group if 
+       needed.  Add the user names to that group that you wish to 
        have access to the device.  For example, we typically will
        create a group named "ixj" in /etc/group and add all users
-       to that group that we want to run software that can use the
+       to that group that we want to run software that can use the 
        ixjX devices.
 
      - change the permissions on the device files, like this:
-
-       chgrp ixj /dev/ixj*
+	
+       chgrp ixj /dev/ixj*	
        chmod 660 /dev/ixj*
-
+	
 Once this is done, then non-root users should be able to use the
 devices.  If you have enabled autoloading of modules, then the user
 should be able to open the device and have the module loaded
@@ -333,7 +333,7 @@ automatically for them.
 4.0 Driver Installation problems.
 
 We have tested these drivers on the 2.2.9, 2.2.10, 2.2.12, and 2.2.13 kernels
-and in all cases have eventually been able to get the drivers to load and
+and in all cases have eventually been able to get the drivers to load and 
 run.  We have found four types of problems that prevent this from happening.
 The problems and solutions are:
 
@@ -342,7 +342,7 @@ as a checklist.  Many people miss running the ixj_dev_create script and thus
 never load the device names into the filesystem.
 
   b. The kernel is inconsistently linked.  We have found this problem in
-the Out Of the Box installation of several distributions.  The symptoms
+the Out Of the Box installation of several distributions.  The symptoms 
 are that neither driver will load, and that the unknown symbols include "jiffy"
 and "kmalloc".  The solution is to recompile both the kernel and the
 modules.  The command string for the final compile looks like this:
@@ -353,8 +353,8 @@ modules.  The command string for the final compile looks like this:
     3.  cp /tmp/.config .
     4.	make clean;make bzImage;make modules;make modules_install
 
-This rebuilds both the kernel and all the modules and makes sure they all
-have the same linkages.  This generally solves the problem once the new
+This rebuilds both the kernel and all the modules and makes sure they all 
+have the same linkages.  This generally solves the problem once the new 
 kernel is installed and the system rebooted.
 
   c. The kernel has been patched, then unpatched.  This happens when
@@ -363,7 +363,7 @@ The symptoms are proceeding through all three above steps and still not
 being able to load the driver.  What has happened is that the generated
 header files are out of sync with the kernel itself.  The solution is
 to recompile (again) using "make mrproper".  This will remove and then
-regenerate all the necessary header files.  Once this is done, then you
+regenerate all the necessary header files.  Once this is done, then you 
 need to install and reboot the kernel.  We have not seen any problem
 loading one of our drivers after this treatment.
 
@@ -375,3 +375,20 @@ used on that product.  All other Quicknet products function normally
 in this regard.  We have a work-around, but it's not done yet.  Until
 then, if you want dial-tone, you can always play a recorded dial-tone
 sound into the audio until you have gathered the DTMF digits.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

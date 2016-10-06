@@ -297,9 +297,9 @@ will require extra work due to the application tag.
         static struct blk_integrity my_profile = {
             .name                   = "STANDARDSBODY-TYPE-VARIANT-CSUM",
             .generate_fn            = my_generate_fn,
-	    .verify_fn              = my_verify_fn,
-	    .get_tag_fn             = my_get_tag_fn,
-	    .set_tag_fn             = my_set_tag_fn,
+       	    .verify_fn              = my_verify_fn,
+       	    .get_tag_fn             = my_get_tag_fn,
+       	    .set_tag_fn             = my_set_tag_fn,
 	    .tuple_size             = sizeof(struct my_tuple_size),
 	    .tag_size               = <tag bytes per hw sector>,
         };

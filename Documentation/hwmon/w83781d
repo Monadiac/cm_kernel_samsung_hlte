@@ -230,17 +230,17 @@ register in Bank0.CR51 of W83781D.
 >    to program these to be diode inputs.
  --> You may program Bank0 CR[5Dh] and CR[59h] registers.
 
-	CR[5Dh]    		bit 1(VTIN1)    bit 2(VTIN2)   bit 3(VTIN3)
+ 	CR[5Dh]    		bit 1(VTIN1)    bit 2(VTIN2)   bit 3(VTIN3)
 
-	thermistor                0		 0		0
-	diode 		          1		 1		1
+      	thermistor                0		 0		0
+ 	diode 		          1		 1		1
 
 
 (error) CR[59h] 		bit 4(VTIN1)	bit 2(VTIN2)   bit 3(VTIN3)
 (right) CR[59h] 		bit 4(VTIN1)	bit 5(VTIN2)   bit 6(VTIN3)
 
-	PII thermal diode         1		 1		1
-	2N3904	diode	          0		 0		0
+ 	PII thermal diode         1		 1		1
+ 	2N3904	diode	          0		 0		0
 
 
 Asus Clones

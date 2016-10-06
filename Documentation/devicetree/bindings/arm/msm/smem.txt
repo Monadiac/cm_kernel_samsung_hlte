@@ -108,3 +108,4 @@ Example:
 			qcom,irq-no-syspend;
 		};
 	};
+

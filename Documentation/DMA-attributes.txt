@@ -100,3 +100,4 @@ transferred to 'device' domain. This attribute can be also used for
 dma_unmap_{single,page,sg} functions family to force buffer to stay in
 device domain after releasing a mapping for it. Use this attribute with
 care!
+

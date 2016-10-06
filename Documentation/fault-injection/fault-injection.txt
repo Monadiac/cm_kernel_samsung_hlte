@@ -239,3 +239,4 @@ trap "echo 0 > /sys/kernel/debug/$FAILTYPE/probability" SIGINT SIGTERM EXIT
 
 echo "Injecting errors into the module $module... (interrupt to stop)"
 sleep 1000000
+

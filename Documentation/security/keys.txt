@@ -94,7 +94,7 @@ Each key has a number of attributes:
  (*) Each key can be in one of a number of basic states:
 
      (*) Uninstantiated. The key exists, but does not have any data attached.
-	 Keys being requested from userspace will be in this state.
+     	 Keys being requested from userspace will be in this state.
 
      (*) Instantiated. This is the normal state. The key is fully formed, and
 	 has data attached.
@@ -805,6 +805,23 @@ The keyctl syscall functions are:
      kernel and resumes executing userspace.
 
 
+ (*) Invalidate a key.
+
+	long keyctl(KEYCTL_INVALIDATE, key_serial_t key);
+
+     This function marks a key as being invalidated and then wakes up the
+     garbage collector.  The garbage collector immediately removes invalidated
+     keys from all keyrings and deletes the key when its reference count
+     reaches zero.
+
+     Keys that are marked invalidated become invisible to normal key operations
+     immediately, though they are still visible in /proc/keys until deleted
+     (they're marked with an 'i' flag).
+
+     A process must have search permission on the key for this function to be
+     successful.
+
+
 ===============
 KERNEL SERVICES
 ===============
@@ -908,8 +925,8 @@ payload contents" for more information.
 	struct key *request_key_async_with_auxdata(const struct key_type *type,
 						   const char *description,
 						   const char *callout_info,
-						   size_t callout_len,
-						   void *aux);
+					     	   size_t callout_len,
+					     	   void *aux);
 
     which are asynchronous equivalents of request_key() and
     request_key_with_auxdata() respectively.
@@ -1234,11 +1251,11 @@ The structure has a number of fields, some of which are mandatory:
 
      (*) struct key *key;
 
-	 The key under construction.
+     	 The key under construction.
 
      (*) struct key *authkey;
 
-	 The authorisation key.
+     	 The authorisation key.
 
 
 ============================

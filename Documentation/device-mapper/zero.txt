@@ -34,3 +34,4 @@ echo "0 $TEN_TERABYTES snapshot /dev/mapper/zero1 /dev/sdb1 p 128" | \
 This will create a 10TB sparse device called /dev/mapper/sparse1 that has
 10GB of actual storage space available. If more than 10GB of data is written
 to this device, it will start returning I/O errors.
+

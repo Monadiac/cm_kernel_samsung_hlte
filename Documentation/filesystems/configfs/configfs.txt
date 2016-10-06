@@ -480,3 +480,5 @@ As rmdir(2) does not work in the "live" directory, an item must be
 shutdown, or "uncommitted".  Again, this is done via rename(2), this
 time from the "live" directory back to the "pending" one.  The subsystem
 is notified by the ct_group_ops->uncommit_object() method.
+
+

@@ -51,8 +51,8 @@ Required properties:
 					registers reside.
 				"mdd" - string to identify the area where mdd registers reside.
 - qcom,headroom-voltage:	The minimum required voltage drop between the input
-				voltage and the output voltage for the LDO to be
-				operational, in microvolts. Acceptable values are from
+			 	voltage and the output voltage for the LDO to be
+			 	operational, in microvolts. Acceptable values are from
 				50000uV to 250000uV
 - qcom,retention-voltage:	The value for retention voltage in microvolts. Acceptable
 				values are from 465000uV to 750000uV

@@ -56,3 +56,4 @@ WARNING: If you are trying to access the integrated sensors on the SiS5595
 chip, you want the sis5595 driver for those, not this driver. This driver
 is a BUS driver, not a CHIP driver. A BUS driver is used by other CHIP
 drivers to access chips on the bus.
+

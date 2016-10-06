@@ -21,7 +21,7 @@
  kernel(driver): calls request_firmware(&fw_entry, $FIRMWARE, device)
 
  userspace:
-	- /sys/class/firmware/xxx/{loading,data} appear.
+ 	- /sys/class/firmware/xxx/{loading,data} appear.
 	- hotplug gets called with a firmware identifier in $FIRMWARE
 	  and the usual hotplug environment.
 		- hotplug: echo 1 > /sys/class/firmware/xxx/loading
@@ -50,7 +50,7 @@
  ==================================
 
 	 if(request_firmware(&fw_entry, $FIRMWARE, device) == 0)
-		copy_fw_to_device(fw_entry->data, fw_entry->size);
+	 	copy_fw_to_device(fw_entry->data, fw_entry->size);
 	 release(fw_entry);
 
  Sample/simple hotplug script:
@@ -90,7 +90,7 @@
  Note that this functionality has not been implemented.
 
  - Why OPTIONAL in-kernel persistence may be a good idea sometimes:
-
+ 
 	- If the device that needs the firmware is needed to access the
 	  filesystem. When upon some error the device has to be reset and the
 	  firmware reloaded, it won't be possible to get it from userspace.
@@ -101,7 +101,8 @@
 	- Replacing buggy DSDT/SSDT ACPI tables on boot.
 	  Note: this would require the persistent objects to be included
 	  within the kernel image, probably within initramfs.
-
+	  
    And the same device can be needed to access the filesystem or not depending
    on the setup, so I think that the choice on what firmware to make
    persistent should be left to userspace.
+

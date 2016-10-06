@@ -306,8 +306,8 @@ replicas continue to be exactly same.
 		be bind mounted.
 
 
-	State diagram:
-	The state diagram below explains the state transition of a mount,
+   	State diagram:
+   	The state diagram below explains the state transition of a mount,
 	in response to various commands.
 	------------------------------------------------------------------------
 	|             |make-shared |  make-slave  | make-private |make-unbindab|
@@ -360,7 +360,7 @@ replicas continue to be exactly same.
    |non-shared| shared        |      private   |      slave     |  invalid   |
    ***************************************************************************
 
-	Details:
+     	Details:
 
 	1. 'A' is a shared mount and 'B' is a shared mount. A new mount 'C'
 	which is clone of 'A', is created. Its root dentry is 'a' . 'C' is
@@ -789,7 +789,7 @@ replicas continue to be exactly same.
 
 		      the new tree now looks like this:
 
-					  root
+				    	  root
 				      /    	  \
 				     tmp    	   usr
 			         /    \    \
@@ -904,7 +904,7 @@ replicas continue to be exactly same.
 
 	for each mount in the source tree:
 		   a) Create the necessary number of mount trees to
-			be attached to each of the mounts that receive
+		   	be attached to each of the mounts that receive
 			propagation from the destination mount.
 		   b) Do not attach any of the trees to its destination.
 		      However note down its ->mnt_parent and ->mnt_mountpoint

@@ -47,7 +47,7 @@ Missing Features
 (alias TODO list)
 
 	* secondary (not initialized by BIOS) device support
-	* big endian support
+   	* big endian support
 	* DPMS support
 	* MMIO support
 	* interlaced mode variant

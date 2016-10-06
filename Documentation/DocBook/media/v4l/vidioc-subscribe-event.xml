@@ -118,7 +118,7 @@
 		matches the control ID from which you want to receive events.
 		This event is triggered if the control's value changes, if a
 		button control is pressed or if the control's flags change.
-		This event has a &v4l2-event-ctrl; associated with it. This struct
+	    	This event has a &v4l2-event-ctrl; associated with it. This struct
 		contains much of the same information as &v4l2-queryctrl; and
 		&v4l2-control;.</para>
 

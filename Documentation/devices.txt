@@ -1532,7 +1532,7 @@ Your cooperation is appreciated.
 		partitions is 15.
 
  83 char	Matrox mga_vid video driver
-		 0 = /dev/mga_vid0	1st video card
+ 		 0 = /dev/mga_vid0	1st video card
 		 1 = /dev/mga_vid1	2nd video card
 		 2 = /dev/mga_vid2	3rd video card
 		  ...
@@ -1680,14 +1680,14 @@ Your cooperation is appreciated.
  94 char
 
  94 block	IBM S/390 DASD block storage
-		  0 = /dev/dasda First DASD device, major
-		  1 = /dev/dasda1 First DASD device, block 1
-		  2 = /dev/dasda2 First DASD device, block 2
-		  3 = /dev/dasda3 First DASD device, block 3
-		  4 = /dev/dasdb Second DASD device, major
-		  5 = /dev/dasdb1 Second DASD device, block 1
-		  6 = /dev/dasdb2 Second DASD device, block 2
-		  7 = /dev/dasdb3 Second DASD device, block 3
+    		  0 = /dev/dasda First DASD device, major
+    		  1 = /dev/dasda1 First DASD device, block 1
+	    	  2 = /dev/dasda2 First DASD device, block 2
+    		  3 = /dev/dasda3 First DASD device, block 3
+    		  4 = /dev/dasdb Second DASD device, major
+    		  5 = /dev/dasdb1 Second DASD device, block 1
+    		  6 = /dev/dasdb2 Second DASD device, block 2
+    		  7 = /dev/dasdb3 Second DASD device, block 3
 		    ...
 
  95 char	IP filter
@@ -2572,7 +2572,7 @@ Your cooperation is appreciated.
 		  0 = /dev/uba		First USB block device
 		  8 = /dev/ubb		Second USB block device
 		 16 = /dev/ubc		Third USB block device
-		    ...
+ 		    ...
 
 181 char	Conrad Electronic parallel port radio clocks
 		  0 = /dev/pcfclock0	First Conrad radio clock
@@ -3351,3 +3351,4 @@ for the slaves; the slaves are named with decimal integers (/dev/pts/#
 in our notation).  This removes the problem of exhausting the
 namespace and enables the kernel to automatically create the device
 nodes for the slaves on demand using the "devpts" filesystem.
+

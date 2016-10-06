@@ -87,3 +87,5 @@ PowerEdge System    Host Control SMI Type
      1655MC           HC_SMITYPE_TYPE2
       700             HC_SMITYPE_TYPE3
       750             HC_SMITYPE_TYPE3
+
+

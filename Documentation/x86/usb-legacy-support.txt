@@ -41,3 +41,4 @@ manufacturers web site. If an update is not available, disable USB
 Legacy support in the BIOS. If this alone doesn't help, try also adding
 idle=poll on the kernel command line. The BIOS may be entering the SMM
 on the HLT instruction as well.
+

@@ -173,3 +173,4 @@ The tool can be found in v4l-dvb repository under v4l2-apps/util directory.
 
 Example for setting rds ps name:
 # v4l2-ctl -d /dev/radio0 --set-ctrl=rds_ps_name="Dummy"
+

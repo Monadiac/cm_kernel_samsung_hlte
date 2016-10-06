@@ -132,3 +132,4 @@ MAPIO(func)
 
 INITIRQ(func)
 	Machine specific function to initialise interrupts.
+

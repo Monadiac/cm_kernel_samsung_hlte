@@ -32,6 +32,8 @@ Currently, these files are in /proc/sys/fs:
 - nr_open
 - overflowuid
 - overflowgid
+- pipe-user-pages-hard
+- pipe-user-pages-soft
 - suid_dumpable
 - super-max
 - super-nr
@@ -59,7 +61,7 @@ struct {
         int want_pages;        /* pages requested by system */
         int dummy[2];
 } dentry_stat = {0, 0, 45, 0,};
---------------------------------------------------------------
+-------------------------------------------------------------- 
 
 Dentries are dynamically allocated and deallocated, and
 nr_dentry seems to be 0 all the time. Hence it's safe to
@@ -157,6 +159,27 @@ The default is 65534.
 
 ==============================================================
 
+pipe-user-pages-hard:
+
+Maximum total number of pages a non-privileged user may allocate for pipes.
+Once this limit is reached, no new pipes may be allocated until usage goes
+below the limit again. When set to 0, no limit is applied, which is the default
+setting.
+
+==============================================================
+
+pipe-user-pages-soft:
+
+Maximum total number of pages a non-privileged user may allocate for pipes
+before the pipe size gets limited to a single page. Once this limit is reached,
+new pipes will be limited to a single page in size for this user in order to
+limit total memory usage, and trying to increase them using fcntl() will be
+denied until usage goes below the limit again. The default value allows to
+allocate up to 1024 pipes at their default size. When set to 0, no limit is
+applied.
+
+==============================================================
+
 suid_dumpable:
 
 This value can be used to query and set the core dump mode for setuid
@@ -242,3 +265,4 @@ Each "watch" costs roughly 90 bytes on a 32bit kernel, and roughly 160 bytes
 on a 64bit one.
 The current default value for  max_user_watches  is the 1/32 of the available
 low memory, divided for the "watch" cost in bytes.
+

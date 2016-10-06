@@ -41,7 +41,7 @@ How to tune the reader speed ?
 
 -  clockmode will provide 3 different base settings commonly adopted by
    different software:
-	1. 3Mhz579
+ 	1. 3Mhz579
 	2. 3Mhz680
 	3. 6Mhz
 

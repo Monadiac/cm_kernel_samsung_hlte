@@ -46,3 +46,6 @@ rate, number of channels and word size) to save on power.
 
 It is also desirable to use the codec (if possible) to drive (or master) the
 audio clocks as it usually gives more accurate sample rates than the CPU.
+
+
+

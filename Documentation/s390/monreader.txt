@@ -194,3 +194,4 @@ As soon as the device is opened, incoming messages will be accepted and they
 will account for the message limit, i.e. opening the device without reading
 from it will provoke the "message limit reached" error (EOVERFLOW error code)
 eventually.
+

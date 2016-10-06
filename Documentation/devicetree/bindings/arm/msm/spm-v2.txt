@@ -71,3 +71,4 @@ Example:
 		qcom,saw2-spm-cmd-pc = [00 20 10 92 a0 b0 07 3b 92
 				a0 b0 82 10 30 02 22 30 0f];
 	};
+

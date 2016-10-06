@@ -38,3 +38,5 @@ driver or machine to change gpio configuration.
 
 See arch/arm/plat-samsung/include/plat/gpio-cfg.h for more information
 on these functions.
+
+

@@ -80,3 +80,4 @@ also has the side effect of not being able to take advantage of bus
 parking, thus lowering arbitration performance. The Bt879 drivers must
 query for these non-compliant devices, and set the EN_VSFX bit only if
 required.
+

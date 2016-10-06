@@ -249,3 +249,4 @@ Authors: Daniel Drake <dsd@gentoo.org>,
 With help from: Alan Cox, Avuton Olrich, Heikki Orsila, Jan Engelhardt,
 Kyle McMartin, Kyle Moffett, Randy Dunlap, Robert Hancock, Uli Kunitz,
 Vadim Lobanov
+

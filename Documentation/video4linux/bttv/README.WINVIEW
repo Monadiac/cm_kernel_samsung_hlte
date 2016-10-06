@@ -30,3 +30,4 @@ insmod videodev
 insmod i2c scan=1 i2c_debug=0 verbose=0
 insmod tuner type=1 debug=0
 insmod bttv  pll=1 radio=1 card=17
+

@@ -59,3 +59,4 @@ power_state:
 
 lux (read only):
 	returns the value from the last sensor reading
+

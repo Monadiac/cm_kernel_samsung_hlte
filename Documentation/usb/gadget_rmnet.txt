@@ -219,3 +219,4 @@ echo 1 > /sys/class/usb_composite/rmnet_smd_sdio/transport
 
 -EINVAL is returned if a write is attempted to transport when a USB cable
 is not connected.
+

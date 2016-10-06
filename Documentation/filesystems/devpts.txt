@@ -82,7 +82,7 @@ once), following user-space issues should be noted.
    /dev/pts/ptmx correctly (default mode is 0000). The scripts can set the
    mode by, either
 
-	- adding ptmxmode mount option to devpts entry in /etc/fstab, or
+   	- adding ptmxmode mount option to devpts entry in /etc/fstab, or
 	- using 'chmod 0666 /dev/pts/ptmx'
 
 4. If multi-instance mode mount is needed for containers, but the system
@@ -126,7 +126,7 @@ once), following user-space issues should be noted.
    does not provide strict isolation in a container environment. i.e by
    mounting devpts without the 'newinstance' option, a container could
    get visibility into the 'host' or root container's devpts.
-
+   
    To workaround this and have strict isolation, all mounts of devpts,
    including the mount in the root container, should use the newinstance
    option.

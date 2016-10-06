@@ -76,7 +76,7 @@ static int example_attach_adapter(struct i2c_adapter *adap)
 }
 
 static struct i2c_driver example_driver = {
-	.driver		= {
+ 	.driver		= {
 		.owner		= THIS_MODULE,
 		.name		= "example",
 	},
@@ -183,7 +183,7 @@ static int example_probe(struct i2c_client *i2c_client,
 			 const struct i2c_device_id *id)
 {
 	struct example_state *state;
-	struct device *dev = &i2c_client->dev;
+ 	struct device *dev = &i2c_client->dev;
 	int ret;
 
 	state = kzalloc(sizeof(struct example_state), GFP_KERNEL);
@@ -217,7 +217,7 @@ and other utilities:
 +MODULE_DEVICE_TABLE(i2c, example_idtable);
 
 static struct i2c_driver example_driver = {
-	.driver		= {
+ 	.driver		= {
 		.owner		= THIS_MODULE,
 		.name		= "example",
 	},
@@ -232,7 +232,7 @@ struct example_state {
 };
 
 static int example_probe(struct i2c_client *client,
-			 const struct i2c_device_id *id)
+		     	 const struct i2c_device_id *id)
 {
 	struct example_state *state;
 	struct device *dev = &client->dev;
@@ -269,7 +269,7 @@ static struct i2c_device_id example_idtable[] = {
 MODULE_DEVICE_TABLE(i2c, example_idtable);
 
 static struct i2c_driver example_driver = {
-	.driver		= {
+ 	.driver		= {
 		.owner		= THIS_MODULE,
 		.name		= "example",
 	},

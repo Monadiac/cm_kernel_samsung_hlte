@@ -303,3 +303,4 @@
       - xlnx,support-usb-fs: A value 0 means the core is built as high speed
                              only. A value 1 means the core also supports
                              full speed devices.
+

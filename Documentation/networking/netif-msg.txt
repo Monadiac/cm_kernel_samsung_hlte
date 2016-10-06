@@ -76,3 +76,4 @@ The set of message levels is named
     6    NETIF_MSG_TX_DONE	0x0040
     6    NETIF_MSG_RX_STATUS	0x0040
     7    NETIF_MSG_PKTDATA	0x0080
+

@@ -99,3 +99,4 @@ If your board BIOS doesn't initialize the chip, or you want
 different settings, you can set the following parameters:
 init=1,
 pwminv: 0 default pwm output, 1 inverts pwm output.
+

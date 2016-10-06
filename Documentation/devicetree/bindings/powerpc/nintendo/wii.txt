@@ -181,3 +181,4 @@ Nintendo Wii device tree
    - compatible : should be "nintendo,hollywood-di"
    - reg : should contain the DI registers location and length
    - interrupts : should contain the DI interrupt
+

@@ -302,3 +302,4 @@ ICE1712 supports only the unconventional format, interleaved
 10-channels 24bit (packed in 32bit) format.  Therefore you cannot mmap
 the buffer as the conventional (mono or 2-channels, 8 or 16bit) format
 on OSS.
+

@@ -20,3 +20,4 @@ Example:
 			ti,temp-hot = <43>;
 		};
 	};
+

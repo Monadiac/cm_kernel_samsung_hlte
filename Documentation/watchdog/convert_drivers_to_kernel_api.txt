@@ -215,3 +215,4 @@ Create a patch and send it to upstream
 
 Make sure you understood Documentation/SubmittingPatches and send your patch to
 linux-watchdog@vger.kernel.org. We are looking forward to it :)
+

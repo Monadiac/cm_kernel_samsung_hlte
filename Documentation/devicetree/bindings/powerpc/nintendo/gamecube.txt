@@ -106,3 +106,4 @@ Nintendo GameCube device tree
    - compatible : should be "nintendo,flipper-exi"
    - reg : should contain the EXI registers location and length
    - interrupts : should contain the EXI interrupt
+

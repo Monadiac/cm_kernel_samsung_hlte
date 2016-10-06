@@ -145,3 +145,4 @@ of the framework.
 From user mode:
 No API for user space access to the per-device latency constraints is provided
 yet - still under discussion.
+

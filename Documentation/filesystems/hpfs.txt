@@ -219,7 +219,7 @@ History
 1.91 Fixed a bug that chk_sectors failed when sectors were at the end of disk
      Fixed a race-condition when write_inode is called while deleting file
      Fixed a bug that could possibly happen (with very low probability) when
-	using 0xff in filenames
+     	using 0xff in filenames
      Rewritten locking to avoid race-conditions
      Mount option 'eas' now works
      Fsync no longer returns error
@@ -232,13 +232,13 @@ History
 1.93 Modified, so that it works with kernels >= 2.1.131, I don't know if it
 	works with previous versions
      Fixed a possible problem with disks > 64G (but I don't have one, so I can't
-	test it)
+     	test it)
      Fixed a file overflow at 2G
      Added new option 'timeshift'
      Changed behaviour on HPFS386: It is now possible to operate on HPFS386 in
-	read-only mode
+     	read-only mode
      Fixed a bug that slowed down alloc and prevented allocating 100% space
-	(this bug was not destructive)
+     	(this bug was not destructive)
 1.94 Added workaround for one bug in Linux
      Fixed one buffer leak
      Fixed some incompatibilities with large extended attributes (but it's still

@@ -87,3 +87,4 @@ power_domain_target	"%s state=%lu cpu_id=%lu"
 
 The first parameter gives the power domain name (e.g. "mpu_pwrdm").
 The second parameter is the power domain target state.
+

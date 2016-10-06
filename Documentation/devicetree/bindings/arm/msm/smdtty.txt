@@ -37,3 +37,4 @@ Example:
 			qcom,smdtty-dev-name = "LOOPBACK_TTY";
 		};
 	};
+

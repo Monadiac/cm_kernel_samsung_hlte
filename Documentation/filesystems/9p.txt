@@ -1,4 +1,4 @@
-		    v9fs: Plan 9 Resource Sharing for Linux
+	  	    v9fs: Plan 9 Resource Sharing for Linux
 		    =======================================
 
 ABOUT
@@ -52,7 +52,7 @@ OPTIONS
 =======
 
   trans=name	select an alternative transport.  Valid options are
-		currently:
+  		currently:
 			unix 	- specifying a named pipe mount point
 			tcp	- specifying a normal TCP/IP connection
 			fd   	- used passed file descriptors for connection
@@ -62,11 +62,11 @@ OPTIONS
 			rdma	- connect to a specified RDMA channel
 
   uname=name	user name to attempt mount as on the remote server.  The
-		server may override or ignore this value.  Certain user
+  		server may override or ignore this value.  Certain user
 		names may require authentication.
 
   aname=name	aname specifies the file tree to access when the server is
-		offering several exported file systems.
+  		offering several exported file systems.
 
   cache=mode	specifies a caching policy.  By default, no caches are used.
 			loose = no attempts are made at consistency,
@@ -110,7 +110,7 @@ OPTIONS
   afid		security channel - used by Plan 9 authentication protocols
 
   nodevmap	do not map special files - represent them as normal files.
-		This can be used to share devices/named pipes/sockets between
+  		This can be used to share devices/named pipes/sockets between
 		hosts.  This functionality will be expanded in later versions.
 
   access	there are four access modes.
@@ -147,7 +147,7 @@ on sourceforge (http://sourceforge.net/projects/v9fs).
 News and other information is maintained on a Wiki.
 (http://sf.net/apps/mediawiki/v9fs/index.php).
 
-Bug reports may be issued through the kernel.org bugzilla
+Bug reports may be issued through the kernel.org bugzilla 
 (http://bugzilla.kernel.org)
 
 For more information on the Plan 9 Operating System check out
@@ -163,3 +163,4 @@ STATUS
 The 2.6 kernel support is working on PPC and x86.
 
 PLEASE USE THE KERNEL BUGZILLA TO REPORT PROBLEMS. (http://bugzilla.kernel.org)
+

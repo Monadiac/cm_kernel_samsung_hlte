@@ -40,3 +40,4 @@ Description:	Make it possible to adjust defio refresh rate.
 		it only makes sense to adjust this value if only one or two
 		tiles get changed and it's not appropriate to expect the application
 		to flush it's tiny changes explicitely at higher than default rate.
+

@@ -50,3 +50,4 @@ can@3,100 {
 	interrupt-parent = <&mpic>;
 	nxp,external-clock-frequency = <16000000>;
 };
+

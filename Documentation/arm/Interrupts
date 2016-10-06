@@ -164,3 +164,4 @@ Please note that this will not solve all problems - some of them are
 hardware based.  Mixing level-based and edge-based IRQs on the same
 parent signal (eg neponset) is one such area where a software based
 solution can't provide the full answer to low IRQ latency.
+

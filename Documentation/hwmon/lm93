@@ -306,3 +306,4 @@ LM93 Unique sysfs Files
 	temp<n>_auto_boost_hyst	temperature channel boost hysteresis
 
 	gpio			input state of 8 GPIO pins; read-only
+

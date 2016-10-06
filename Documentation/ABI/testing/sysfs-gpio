@@ -24,3 +24,4 @@ Description:
 	    /base ... (r/o) same as N
 	    /label ... (r/o) descriptive, not necessarily unique
 	    /ngpio ... (r/o) number of GPIOs; numbered N to N + (ngpio - 1)
+

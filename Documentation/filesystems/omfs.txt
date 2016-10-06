@@ -103,3 +103,4 @@ in the table.
 
 If this table overflows, a continuation inode is written and pointed to by
 e_next.  These have a header but lack the rest of the inode structure.
+

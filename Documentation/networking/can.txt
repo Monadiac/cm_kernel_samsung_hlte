@@ -656,25 +656,25 @@ solution for a couple of reasons:
 
     $ ip link set can0 type can help
     Usage: ip link set DEVICE type can
-	[ bitrate BITRATE [ sample-point SAMPLE-POINT] ] |
-	[ tq TQ prop-seg PROP_SEG phase-seg1 PHASE-SEG1
-	  phase-seg2 PHASE-SEG2 [ sjw SJW ] ]
+    	[ bitrate BITRATE [ sample-point SAMPLE-POINT] ] |
+    	[ tq TQ prop-seg PROP_SEG phase-seg1 PHASE-SEG1
+     	  phase-seg2 PHASE-SEG2 [ sjw SJW ] ]
 
-	[ loopback { on | off } ]
-	[ listen-only { on | off } ]
-	[ triple-sampling { on | off } ]
+    	[ loopback { on | off } ]
+    	[ listen-only { on | off } ]
+    	[ triple-sampling { on | off } ]
 
-	[ restart-ms TIME-MS ]
-	[ restart ]
+    	[ restart-ms TIME-MS ]
+    	[ restart ]
 
-	Where: BITRATE       := { 1..1000000 }
-	       SAMPLE-POINT  := { 0.000..0.999 }
-	       TQ            := { NUMBER }
-	       PROP-SEG      := { 1..8 }
-	       PHASE-SEG1    := { 1..8 }
-	       PHASE-SEG2    := { 1..8 }
-	       SJW           := { 1..4 }
-	       RESTART-MS    := { 0 | NUMBER }
+    	Where: BITRATE       := { 1..1000000 }
+    	       SAMPLE-POINT  := { 0.000..0.999 }
+    	       TQ            := { NUMBER }
+    	       PROP-SEG      := { 1..8 }
+    	       PHASE-SEG1    := { 1..8 }
+    	       PHASE-SEG2    := { 1..8 }
+    	       SJW           := { 1..4 }
+    	       RESTART-MS    := { 0 | NUMBER }
 
   - Display CAN device details and statistics:
 

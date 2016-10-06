@@ -1,5 +1,5 @@
 These instructions are deliberately very basic. If you want something clever,
-go read the real docs ;-) Please don't add more stuff, but feel free to
+go read the real docs ;-) Please don't add more stuff, but feel free to 
 correct my mistakes ;-)    (mbligh@aracnet.com)
 Thanks to John Levon, Dave Hansen, et al. for help writing this.
 
@@ -53,3 +53,4 @@ dump output	opreport >  output_file
 To only report on the kernel, run opreport -l /boot/vmlinux > output_file
 
 A reset is needed to clear old statistics, which survive a reboot.
+

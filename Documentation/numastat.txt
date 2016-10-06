@@ -24,3 +24,4 @@ interleave_hit 	Interleaving wanted to allocate from this node
 For easier reading you can use the numastat utility from the numactl package
 (http://oss.sgi.com/projects/libnuma/). Note that it only works
 well right now on machines with a small number of CPUs.
+

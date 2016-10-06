@@ -47,9 +47,9 @@ Creating a Cache
    parameters for cache management, and some operations detailing how
    to work with particular cache items.
    The operations requires are:
-	struct cache_head *alloc(void)
+   	struct cache_head *alloc(void)
 		This simply allocates appropriate memory and returns
-		a pointer to the cache_detail embedded within the
+   		a pointer to the cache_detail embedded within the
 		structure
 	void cache_put(struct kref *)
 		This is called when the last reference to an item is
@@ -58,7 +58,7 @@ Creating a Cache
 		references create by 'cache_init' and, if CACHE_VALID
 		is set, any references created by cache_update.
 		It should then release the memory allocated by
-		'alloc'.
+   		'alloc'.
         int match(struct cache_head *orig, struct cache_head *new)
 		test if the keys in the two structures match.  Return
 		1 if they do, 0 if they don't.
@@ -71,11 +71,11 @@ Creating a Cache
 			struct cache_head *h)
 		Optional.  Used to provide a /proc file that lists the
 		contents of a cache.  This should show one item,
-		usually on just one line.
+   		usually on just one line.
 	int cache_request(struct cache_detail *cd, struct cache_head *h,
-		char **bpp, int *blen)
+   		char **bpp, int *blen)
 		Format a request to be send to user-space for an item
-		to be instantiated.  *bpp is a buffer of size *blen.
+   		to be instantiated.  *bpp is a buffer of size *blen.
 		bpp should be moved forward over the encoded message,
 		and  *blen should be reduced to show how much free
 		space remains.  Return 0 on success or <0 if not

@@ -56,7 +56,7 @@ Missing Features
 (alias TODO list)
 
 	* secondary (not initialized by BIOS) device support
-	* big endian support
+   	* big endian support
 	* Zorro bus support
 	* MMIO support
 	* 24 bpp mode support on more cards

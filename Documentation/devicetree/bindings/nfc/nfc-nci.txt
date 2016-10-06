@@ -32,3 +32,4 @@ Example:
 			qcom,clk-gpio = <&msmgpio 75 0x00>;
 		};
 	};
+

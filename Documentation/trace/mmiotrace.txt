@@ -160,3 +160,5 @@ Tools for Developers
 The user space tools include utilities for:
 - replacing numeric addresses and values with hardware register names
 - replaying MMIO logs, i.e., re-executing the recorded writes
+
+

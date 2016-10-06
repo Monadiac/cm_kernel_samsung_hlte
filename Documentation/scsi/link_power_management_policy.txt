@@ -15,3 +15,5 @@ max_performance		Generally, this means no power management.  Tell
 medium_power		Tell the controller to enter a lower power state
 			when possible, but do not enter the lowest power
 			state, thus improving latency over min_power setting.
+
+

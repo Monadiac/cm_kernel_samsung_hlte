@@ -346,7 +346,7 @@ maps this page at its virtual address.
 
   void flush_anon_page(struct vm_area_struct *vma, struct page *page,
                        unsigned long vmaddr)
-	When the kernel needs to access the contents of an anonymous
+  	When the kernel needs to access the contents of an anonymous
 	page, it calls this function (currently only
 	get_user_pages()).  Note: flush_dcache_page() deliberately
 	doesn't work for an anonymous page.  The default
@@ -367,7 +367,7 @@ maps this page at its virtual address.
 
 
   void flush_icache_range(unsigned long start, unsigned long end)
-	When the kernel stores into addresses that it will execute
+  	When the kernel stores into addresses that it will execute
 	out of (eg when loading modules), this function is called.
 
 	If the icache does not snoop stores then this routine will need

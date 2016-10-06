@@ -16,3 +16,4 @@ CD32 pad   |   Parallel port
 7 (+5V)    |    1 (STROBE)
 8 (Gnd)    |   18 (Gnd)
 9 (Fire2)  |    7 (D5)
+

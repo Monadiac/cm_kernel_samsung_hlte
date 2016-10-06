@@ -78,7 +78,7 @@ interrupt.
 Handling Interrupts
 -------------------
 
-In general, you should just plumb the card's interrupt line in with
+In general, you should just plumb the card's interrupt line in with 
 
 request_irq(irq, NCR_700_intr, <irq flags>, <driver name>, host);
 
@@ -132,3 +132,4 @@ set to 1 if the chip is a 53c710.
 burst_disable: (OPTIONAL, 53c710 only)
 
 disable 8 byte bursting for DMA transfers.
+

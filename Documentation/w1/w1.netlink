@@ -94,12 +94,12 @@ W1 search and alarm search commands.
 request:
 [cn_msg]
   [w1_netlink_msg type = W1_MASTER_CMD
-	id is equal to the bus master id to use for searching]
+  	id is equal to the bus master id to use for searching]
   [w1_netlink_cmd cmd = W1_CMD_SEARCH or W1_CMD_ALARM_SEARCH]
 
 reply:
   [cn_msg, ack = 1 and increasing, 0 means the last message,
-	seq is equal to the request seq]
+  	seq is equal to the request seq]
   [w1_netlink_msg type = W1_MASTER_CMD]
   [w1_netlink_cmd cmd = W1_CMD_SEARCH or W1_CMD_ALARM_SEARCH
 	len is equal to number of IDs multiplied by 8]
@@ -115,7 +115,7 @@ cn_msg->len = sizeof(struct w1_netlink_msg) +
 W1 reset command.
 [cn_msg]
   [w1_netlink_msg type = W1_MASTER_CMD
-	id is equal to the bus master id to use for searching]
+  	id is equal to the bus master id to use for searching]
   [w1_netlink_cmd cmd = W1_CMD_RESET]
 
 

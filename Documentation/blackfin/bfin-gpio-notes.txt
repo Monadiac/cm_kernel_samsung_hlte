@@ -66,3 +66,6 @@ configuring it as IRQ!
 	warning messages.
 
     - Kernel permit the identical GPIO be requested from the same driver twice.
+
+
+

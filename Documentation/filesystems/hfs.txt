@@ -21,7 +21,7 @@ When mounting an HFS filesystem, the following options are accepted:
 	used for creating new files.  Default values: '????'.
 
   uid=n, gid=n
-	Specifies the user/group that owns all files on the filesystems.
+  	Specifies the user/group that owns all files on the filesystems.
 	Default:  user/group id of the mounting process.
 
   dir_umask=n, file_umask=n, umask=n
@@ -29,18 +29,18 @@ When mounting an HFS filesystem, the following options are accepted:
 	files and directories.  Defaults to the umask of the mounting process.
 
   session=n
-	Select the CDROM session to mount as HFS filesystem.  Defaults to
+  	Select the CDROM session to mount as HFS filesystem.  Defaults to
 	leaving that decision to the CDROM driver.  This option will fail
 	with anything but a CDROM as underlying devices.
 
   part=n
-	Select partition number n from the devices.  Does only makes
+  	Select partition number n from the devices.  Does only makes
 	sense for CDROMS because they can't be partitioned under Linux.
 	For disk devices the generic partition parsing code does this
 	for us.  Defaults to not parsing the partition table at all.
 
   quiet
-	Ignore invalid mount options instead of complaining.
+  	Ignore invalid mount options instead of complaining.
 
 
 Writing to HFS Filesystems

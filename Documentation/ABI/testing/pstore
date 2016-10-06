@@ -44,3 +44,4 @@ Description:	Generic interface to platform dependent persistent storage.
 		backends are available, the preferred backend may be
 		set by passing the pstore.backend= argument to the kernel at
 		boot time.
+

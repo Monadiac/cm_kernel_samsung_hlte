@@ -106,3 +106,4 @@ Summary of octal values in nibbles must be same as octal value in checksum
 nibble (only first 3 bits are used). Binary value for checksum nibble is
 calculated by sum of binary values in checked nibbles + sum of octal values
 in checked nibbles divided by 8. Only bit 0 of this sum is used.
+

@@ -712,3 +712,4 @@ probes registered after that will not be optimized.  Note that this
 knob *changes* the optimized state. This means that optimized probes
 (marked [OPTIMIZED]) will be unoptimized ([OPTIMIZED] tag will be
 removed). If the knob is turned on, they will be optimized again.
+

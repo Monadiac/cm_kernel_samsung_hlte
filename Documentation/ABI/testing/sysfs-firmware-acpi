@@ -89,7 +89,7 @@ Description:
 		gpe1F:	     0	invalid
 		gpe_all:    1192
 		sci:	1194
-		sci_not:     0
+		sci_not:     0	
 
 		sci - The number of times the ACPI SCI
 		has been called and claimed an interrupt.
@@ -167,3 +167,4 @@ Description:
 		# echo disable > ff_pwr_btn
 		# cat ff_pwr_btn
 		7	enabled
+

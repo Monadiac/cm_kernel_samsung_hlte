@@ -33,7 +33,7 @@ or:
 	struct key *request_key_async_with_auxdata(const struct key_type *type,
 						   const char *description,
 						   const char *callout_info,
-						   size_t callout_len,
+					     	   size_t callout_len,
 						   void *aux);
 
 Or by userspace invoking the request_key system call:
@@ -87,8 +87,8 @@ A request proceeds in the following manner:
      (a) An uninstantiated key U of requested type and description.
 
      (b) An authorisation key V that refers to key U and notes that process A
-	 is the context in which key U should be instantiated and secured, and
-	 from which associated key requests may be satisfied.
+     	 is the context in which key U should be instantiated and secured, and
+     	 from which associated key requests may be satisfied.
 
  (4) request_key() then forks and executes /sbin/request-key with a new session
      keyring that contains a link to auth key V.

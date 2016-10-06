@@ -179,9 +179,9 @@ The following sysctls are available for the XFS filesystem:
 	in /proc/fs/xfs/stat.  It then immediately resets to "0".
 
   fs.xfs.xfssyncd_centisecs	(Min: 100  Default: 3000  Max: 720000)
-	The interval at which the xfssyncd thread flushes metadata
-	out to disk.  This thread will flush log activity out, and
-	do some processing on unlinked inodes.
+  	The interval at which the xfssyncd thread flushes metadata
+  	out to disk.  This thread will flush log activity out, and
+  	do some processing on unlinked inodes.
 
   fs.xfs.xfsbufd_centisecs	(Min: 50  Default: 100	Max: 3000)
 	The interval at which xfsbufd scans the dirty metadata buffers list.

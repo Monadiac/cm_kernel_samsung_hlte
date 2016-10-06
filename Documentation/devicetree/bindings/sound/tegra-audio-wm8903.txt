@@ -68,3 +68,4 @@ sound {
 	nvidia,int-mic-en-gpios = <&gpio 184 0>; /*gpio PX0 */
 	nvidia,ext-mic-en-gpios = <&gpio 185 0>; /* gpio PX1 */
 };
+

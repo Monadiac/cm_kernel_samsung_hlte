@@ -24,3 +24,4 @@ to read, buffer is available to write or modem control signals changed.
 Upon receiving notification from SMD driver, USB driver appropriately
 schedules read/write works. In case of control singals, USB driver
 notifies gadget component with changed control information.
+

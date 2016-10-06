@@ -104,7 +104,7 @@ HDIO_GETGEO			get device geometry
 
 	error returns:
 	  EINVAL	if the device is not a disk drive or floppy drive,
-			or if the user passes a null pointer
+	  		or if the user passes a null pointer
 
 
 	notes:
@@ -573,7 +573,7 @@ HDIO_DRIVE_TASKFILE		execute raw taskfile
 	  ENOMEM	Unable to allocate memory for task
 	  EFAULT	req_cmd == TASKFILE_IN_OUT (not implemented as of 2.6.8)
 	  EPERM		req_cmd == TASKFILE_MULTI_OUT and drive
-			multi-count not yet set.
+	  		multi-count not yet set.
 	  EIO		Drive failed the command.
 
 	notes:
@@ -618,10 +618,10 @@ HDIO_DRIVE_TASKFILE		execute raw taskfile
 	    io_ports[8]		values for the taskfile registers
 	    hob_ports[8]	high-order bytes, for extended commands
 	    out_flags		flags indicating which entries in the
-				io_ports[] and hob_ports[] arrays
+	    			io_ports[] and hob_ports[] arrays
 				contain valid values.  Type ide_reg_valid_t.
 	    in_flags		flags indicating which entries in the
-				io_ports[] and hob_ports[] arrays
+	    			io_ports[] and hob_ports[] arrays
 				are expected to contain valid values
 				on return.
 	    data_phase		See below
@@ -1067,3 +1067,5 @@ HDIO_SET_IDE_SCSI
 HDIO_SET_SCSI_IDE
 
 	Not implemented, as of 2.6.8.1
+
+

@@ -1,7 +1,7 @@
 Text File for the SMC TokenCard TokenRing Linux driver (smctr.c).
         By Jay Schulist <jschlst@samba.org>
 
-The Linux SMC Token Ring driver works with the SMC TokenCard Elite (8115T)
+The Linux SMC Token Ring driver works with the SMC TokenCard Elite (8115T) 
 ISA and SMC TokenCard Elite/A (8115T/A) MCA adapters.
 
 Latest information on this driver can be obtained on the Linux-SNA WWW site.
@@ -36,11 +36,11 @@ Errata:
     specify the ringspeed with the ringspeed=[4/16] module option. If no
     ringspeed is specified the driver will attempt to autodetect the ring
     speed and/or if the adapter is the first/only station on the ring take
-    the appropriate actions.
+    the appropriate actions. 
 
     NOTE: Default ring speed is 16MB UTP.
 
-3). PnP support for this adapter sucks. I recommend hard setting the
+3). PnP support for this adapter sucks. I recommend hard setting the 
     IO/MEM/IRQ by the jumpers on the adapter. If this is not possible
     load the module with the following io=[ioaddr] mem=[mem_addr]
     irq=[irq_num].

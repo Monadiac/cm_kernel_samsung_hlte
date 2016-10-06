@@ -169,7 +169,7 @@ shows up in sysfs in several locations:
 	chipselect C, accessed through CTLR.
 
    /sys/bus/spi/devices/spiB.C ... symlink to that physical
-	.../CTLR/spiB.C device
+   	.../CTLR/spiB.C device
 
    /sys/devices/.../CTLR/spiB.C/modalias ... identifies the driver
 	that should be used with this device (for hotplug/coldplug)

@@ -24,3 +24,4 @@ Example:
 		ti,intc-size = <96>;
 		reg = <0x48200000 0x1000>;
 	};
+

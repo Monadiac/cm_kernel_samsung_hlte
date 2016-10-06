@@ -88,7 +88,7 @@ must begin on a 16 byte boundary.
 
 offset	    content
 
-	+---+---+---+---+
+     	+---+---+---+---+
   0	| next filehdr|X|	The offset of the next file header
 	+---+---+---+---+	  (zero if no more files)
   4	|   spec.info	|	Info for directories/hard links/devices

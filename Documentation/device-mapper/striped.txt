@@ -55,3 +55,4 @@ for ($i = 0; $i < $num_devs; $i++) {
 
 `echo $table | dmsetup create $dev_name`;
 ]]
+

@@ -95,7 +95,7 @@ Wed Jul 19 09:18:28 1995  Michael Neuffer  <neuffer@goofy.zdv.uni-mainz.de>
 	* scsi.c (scsi_proc_info): Added, to support /proc/scsi/scsi.
 	(scan_scsis): Added some 'spaghetti' code to allow scanning for
 	single devices.
-
+	
 
 Thu Jun 20 15:20:27 1995  Michael Neuffer  <neuffer@goofy.zdv.uni-mainz.de>
 
@@ -215,11 +215,11 @@ Mon Feb 20 08:57:17 1995  Eric Youngdale  (eric@andante)
 
 	* hosts.h: Change io_port to long int from short.
 
-	* 53c7,8xx.c: crash on AEN fixed, SCSI reset is no longer a NOP,
-	  NULL pointer panic on odd UDCs fixed, two bugs in diagnostic output
-	  fixed, should initialize correctly if left running, now loadable,
-	  new memory allocation, extraneous diagnostic output suppressed,
-	  splx() replaced with save/restore flags. [ Drew ]
+ 	* 53c7,8xx.c: crash on AEN fixed, SCSI reset is no longer a NOP,
+ 	  NULL pointer panic on odd UDCs fixed, two bugs in diagnostic output
+ 	  fixed, should initialize correctly if left running, now loadable,
+  	  new memory allocation, extraneous diagnostic output suppressed,
+ 	  splx() replaced with save/restore flags. [ Drew ]
 
 	* hosts.c, hosts.h, scsi_ioctl.c, sd.c, sd_ioctl.c, sg.c, sr.c,
 	sr_ioctl.c: Add special junk at end that Emacs will use for

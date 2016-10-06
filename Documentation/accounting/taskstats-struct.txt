@@ -41,21 +41,21 @@ struct taskstats {
 	 */
 	__u16	version;
 
-	/* The exit code of a task. */
+  	/* The exit code of a task. */
 	__u32	ac_exitcode;		/* Exit status */
 
-	/* The accounting flags of a task as defined in <linux/acct.h>
+  	/* The accounting flags of a task as defined in <linux/acct.h>
 	 * Defined values are AFORK, ASU, ACOMPAT, ACORE, and AXSIG.
 	 */
 	__u8	ac_flag;		/* Record flags */
 
-	/* The value of task_nice() of a task. */
+  	/* The value of task_nice() of a task. */
 	__u8	ac_nice;		/* task_nice */
 
-	/* The name of the command that started this task. */
+  	/* The name of the command that started this task. */
 	char	ac_comm[TS_COMM_LEN];	/* Command name */
 
-	/* The scheduling discipline as set in task->policy field. */
+  	/* The scheduling discipline as set in task->policy field. */
 	__u8	ac_sched;		/* Scheduling discipline */
 
 	__u8	ac_pad[3];
@@ -64,19 +64,19 @@ struct taskstats {
 	__u32	ac_pid;			/* Process ID */
 	__u32	ac_ppid;		/* Parent process ID */
 
-	/* The time when a task begins, in [secs] since 1970. */
+  	/* The time when a task begins, in [secs] since 1970. */
 	__u32	ac_btime;		/* Begin time [sec since 1970] */
 
-	/* The elapsed time of a task, in [usec]. */
+  	/* The elapsed time of a task, in [usec]. */
 	__u64	ac_etime;		/* Elapsed time [usec] */
 
-	/* The user CPU time of a task, in [usec]. */
+  	/* The user CPU time of a task, in [usec]. */
 	__u64	ac_utime;		/* User CPU time [usec] */
 
-	/* The system CPU time of a task, in [usec]. */
+  	/* The system CPU time of a task, in [usec]. */
 	__u64	ac_stime;		/* System CPU time [usec] */
 
-	/* The minor page fault count of a task, as set in task->min_flt. */
+  	/* The minor page fault count of a task, as set in task->min_flt. */
 	__u64	ac_minflt;		/* Minor Page Fault Count */
 
 	/* The major page fault count of a task, as set in task->maj_flt. */
@@ -145,15 +145,15 @@ struct taskstats {
 	 */
 	__u64	coremem;		/* accumulated RSS usage in MB-usec */
 
-	/* Accumulated virtual memory usage in duration of a task.
+  	/* Accumulated virtual memory usage in duration of a task.
 	 * Same as acct_rss_mem1 above except that we keep track of VM usage.
 	 */
 	__u64	virtmem;		/* accumulated VM usage in MB-usec */
 
-	/* High watermark of RSS usage in duration of a task, in KBytes. */
+  	/* High watermark of RSS usage in duration of a task, in KBytes. */
 	__u64	hiwater_rss;		/* High-watermark of RSS usage */
 
-	/* High watermark of VM  usage in duration of a task, in KBytes. */
+  	/* High watermark of VM  usage in duration of a task, in KBytes. */
 	__u64	hiwater_vm;		/* High-water virtual memory usage */
 
 	/* The following four fields are I/O statistics of a task. */

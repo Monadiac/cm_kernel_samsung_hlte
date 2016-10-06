@@ -50,3 +50,4 @@ directly from the info->cmap.red that was listed above. The prgb is the rgb
 that the app wants to match to. The above code is doing what looks like a least
 squares matching function. That's why the cmap entries can't be set to the left
 hand side boundaries of a color range.
+

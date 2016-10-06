@@ -21,3 +21,4 @@ Example:
 		qcom,memory-reservation-type = "EBI1";
 		qcom,memory-reservation-size = <0x500000>;
 	};
+

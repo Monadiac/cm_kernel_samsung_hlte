@@ -32,7 +32,7 @@ new input device in your X11 configuration file (take a look below for an
 example). For additional configuration, see the synaptics driver documentation.
 
 	Section "InputDevice"
-		Identifier      "Synaptics Touchpad"
+        	Identifier      "Synaptics Touchpad"
 	        Driver          "synaptics"
 		Option          "SendCoreEvents"        "true"
 		Option          "Device"                "/dev/input/mice"

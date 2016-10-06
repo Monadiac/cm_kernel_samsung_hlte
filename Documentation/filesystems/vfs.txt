@@ -136,7 +136,7 @@ struct file_system_type {
 	should be shut down
 
   owner: for internal VFS use: you should initialize this to THIS_MODULE in
-	most cases.
+  	most cases.
 
   next: for internal VFS use: you should initialize this to NULL
 
@@ -145,7 +145,7 @@ struct file_system_type {
 The mount() method has the following arguments:
 
   struct file_system_type *fs_type: describes the filesystem, partly initialized
-	by the specific filesystem code
+  	by the specific filesystem code
 
   int flags: mount flags
 
@@ -182,12 +182,12 @@ and provides a fill_super() callback instead. The generic variants are:
   mount_nodev: mount a filesystem that is not backed by a device
 
   mount_single: mount a filesystem which shares the instance between
-	all mounts
+  	all mounts
 
 A fill_super() callback implementation has the following arguments:
 
   struct super_block *sb: the superblock structure. The callback
-	must initialize this properly.
+  	must initialize this properly.
 
   void *data: arbitrary mount options, usually comes as an ASCII
 	string (see "Mount Options" section)
@@ -239,14 +239,14 @@ only called from a process context (i.e. not from an interrupt handler
 or bottom half).
 
   alloc_inode: this method is called by inode_alloc() to allocate memory
-	for struct inode and initialize it.  If this function is not
-	defined, a simple 'struct inode' is allocated.  Normally
-	alloc_inode will be used to allocate a larger structure which
-	contains a 'struct inode' embedded within it.
+ 	for struct inode and initialize it.  If this function is not
+ 	defined, a simple 'struct inode' is allocated.  Normally
+ 	alloc_inode will be used to allocate a larger structure which
+ 	contains a 'struct inode' embedded within it.
 
   destroy_inode: this method is called by destroy_inode() to release
-	resources allocated for struct inode.  It is only required if
-	->alloc_inode was defined and simply undoes anything done by
+  	resources allocated for struct inode.  It is only required if
+  	->alloc_inode was defined and simply undoes anything done by
 	->alloc_inode.
 
   dirty_inode: this method is called by the VFS to mark an inode dirty.
@@ -266,7 +266,7 @@ or bottom half).
 	The "generic_delete_inode()" behavior is equivalent to the
 	old practice of using "force_delete" in the put_inode() case,
 	but does not have the races that the "force_delete()" approach
-	had.
+	had. 
 
   delete_inode: called when the VFS wants to delete an inode
 
@@ -277,15 +277,15 @@ or bottom half).
 	disc. This method is optional
 
   sync_fs: called when VFS is writing out all dirty data associated with
-	a superblock. The second parameter indicates whether the method
+  	a superblock. The second parameter indicates whether the method
 	should wait until the write out has been completed. Optional.
 
   freeze_fs: called when VFS is locking a filesystem and
-	forcing it into a consistent state.  This method is currently
-	used by the Logical Volume Manager (LVM).
+  	forcing it into a consistent state.  This method is currently
+  	used by the Logical Volume Manager (LVM).
 
   unfreeze_fs: called when VFS is unlocking a filesystem and making it writable
-	again.
+  	again.
 
   statfs: called when the VFS needs to get filesystem statistics.
 
@@ -426,25 +426,25 @@ otherwise noted.
 	that is passed to put_link().
 
   put_link: called by the VFS to release resources allocated by
-	follow_link().  The cookie returned by follow_link() is passed
-	to this method as the last parameter.  It is used by
-	filesystems such as NFS where page cache is not stable
-	(i.e. page that was installed when the symbolic link walk
-	started might not be in the page cache at the end of the
-	walk).
+  	follow_link().  The cookie returned by follow_link() is passed
+  	to this method as the last parameter.  It is used by
+  	filesystems such as NFS where page cache is not stable
+  	(i.e. page that was installed when the symbolic link walk
+  	started might not be in the page cache at the end of the
+  	walk).
 
   truncate: Deprecated. This will not be called if ->setsize is defined.
 	Called by the VFS to change the size of a file.  The
-	i_size field of the inode is set to the desired size by the
-	VFS before this method is called.  This method is called by
-	the truncate(2) system call and related functionality.
+ 	i_size field of the inode is set to the desired size by the
+ 	VFS before this method is called.  This method is called by
+ 	the truncate(2) system call and related functionality.
 
 	Note: ->truncate and vmtruncate are deprecated. Do not add new
 	instances/calls of these. Filesystems should be converted to do their
 	truncate sequence via ->setattr().
 
   permission: called by the VFS to check for access rights on a POSIX-like
-	filesystem.
+  	filesystem.
 
 	May be called in rcu-walk mode (mask & MAY_NOT_BLOCK). If in rcu-walk
         mode, the filesystem must check the permission without blocking or
@@ -454,27 +454,27 @@ otherwise noted.
 	-ECHILD and it will be called again in ref-walk mode.
 
   setattr: called by the VFS to set attributes for a file. This method
-	is called by chmod(2) and related system calls.
+  	is called by chmod(2) and related system calls.
 
   getattr: called by the VFS to get attributes of a file. This method
-	is called by stat(2) and related system calls.
+  	is called by stat(2) and related system calls.
 
   setxattr: called by the VFS to set an extended attribute for a file.
-	Extended attribute is a name:value pair associated with an
-	inode. This method is called by setxattr(2) system call.
+  	Extended attribute is a name:value pair associated with an
+  	inode. This method is called by setxattr(2) system call.
 
   getxattr: called by the VFS to retrieve the value of an extended
-	attribute name. This method is called by getxattr(2) function
-	call.
+  	attribute name. This method is called by getxattr(2) function
+  	call.
 
   listxattr: called by the VFS to list all extended attributes for a
-	given file. This method is called by listxattr(2) system call.
+  	given file. This method is called by listxattr(2) system call.
 
   removexattr: called by the VFS to remove an extended attribute from
-	a file. This method is called by removexattr(2) system call.
+  	a file. This method is called by removexattr(2) system call.
 
   truncate_range: a method provided by the underlying filesystem to truncate a
-	range of blocks , i.e. punch a hole somewhere in a file.
+  	range of blocks , i.e. punch a hole somewhere in a file.
 
   update_time: called by the VFS to update a specific time or the i_version of
   	an inode.  If this is not defined the VFS will update the inode itself
@@ -577,8 +577,8 @@ struct address_space_operations {
 	int (*invalidatepage) (struct page *, unsigned long);
 	int (*releasepage) (struct page *, int);
 	void (*freepage)(struct page *);
-	ssize_t (*direct_IO)(int, struct kiocb *, struct iov_iter *iter,
-			loff_t offset);
+	ssize_t (*direct_IO)(int, struct kiocb *, const struct iovec *iov,
+			loff_t offset, unsigned long nr_segs);
 	struct page* (*get_xip_page)(struct address_space *, sector_t,
 			int);
 	/* migrate the contents of a page to the specified target */
@@ -614,20 +614,20 @@ struct address_space_operations {
        that all succeeds, ->readpage will be called again.
 
   sync_page: called by the VM to notify the backing store to perform all
-	queued I/O operations for a page. I/O operations for other pages
+  	queued I/O operations for a page. I/O operations for other pages
 	associated with this address_space object may also be performed.
 
 	This function is optional and is called only for pages with
-	PG_Writeback set while waiting for the writeback to complete.
+  	PG_Writeback set while waiting for the writeback to complete.
 
   writepages: called by the VM to write out pages associated with the
-	address_space object.  If wbc->sync_mode is WBC_SYNC_ALL, then
-	the writeback_control will specify a range of pages that must be
-	written out.  If it is WBC_SYNC_NONE, then a nr_to_write is given
+  	address_space object.  If wbc->sync_mode is WBC_SYNC_ALL, then
+  	the writeback_control will specify a range of pages that must be
+  	written out.  If it is WBC_SYNC_NONE, then a nr_to_write is given
 	and that many pages should be written if possible.
 	If no ->writepages is given, then mpage_writepages is used
-	instead.  This will choose pages from the address space that are
-	tagged as DIRTY and will pass them to ->writepage.
+  	instead.  This will choose pages from the address space that are
+  	tagged as DIRTY and will pass them to ->writepage.
 
   set_page_dirty: called by the VM to set a page dirty.
         This is particularly needed if an address space attaches
@@ -638,11 +638,11 @@ struct address_space_operations {
         PAGECACHE_TAG_DIRTY tag in the radix tree.
 
   readpages: called by the VM to read pages associated with the address_space
-	object. This is essentially just a vector version of
-	readpage.  Instead of just one page, several pages are
-	requested.
+  	object. This is essentially just a vector version of
+  	readpage.  Instead of just one page, several pages are
+  	requested.
 	readpages is only used for read-ahead, so read errors are
-	ignored.  If anything goes wrong, feel free to give up.
+  	ignored.  If anything goes wrong, feel free to give up.
 
   write_begin:
 	Called by the generic buffered write code to ask the filesystem to
@@ -680,12 +680,12 @@ struct address_space_operations {
         that were able to be copied into pagecache.
 
   bmap: called by the VFS to map a logical block offset within object to
-	physical block number. This method is used by the FIBMAP
-	ioctl and for working with swap-files.  To be able to swap to
-	a file, the file must have a stable mapping to a block
-	device.  The swap system does not go through the filesystem
-	but instead uses bmap to find out where the blocks in the file
-	are and uses those addresses directly.
+  	physical block number. This method is used by the FIBMAP
+  	ioctl and for working with swap-files.  To be able to swap to
+  	a file, the file must have a stable mapping to a block
+  	device.  The swap system does not go through the filesystem
+  	but instead uses bmap to find out where the blocks in the file
+  	are and uses those addresses directly.
 
 
   invalidatepage: If a page has PagePrivate set, then invalidatepage
@@ -745,7 +745,7 @@ struct address_space_operations {
         that it has to the page.
 
   launder_page: Called before freeing a page - it writes back the dirty page. To
-	prevent redirtying the page, it is kept locked during the whole
+  	prevent redirtying the page, it is kept locked during the whole
 	operation.
 
   error_remove_page: normally set to generic_error_remove_page if truncation
@@ -772,9 +772,7 @@ struct file_operations {
 	ssize_t (*read) (struct file *, char __user *, size_t, loff_t *);
 	ssize_t (*write) (struct file *, const char __user *, size_t, loff_t *);
 	ssize_t (*aio_read) (struct kiocb *, const struct iovec *, unsigned long, loff_t);
-	ssize_t (*read_iter) (struct kiocb *, struct iov_iter *, loff_t);
 	ssize_t (*aio_write) (struct kiocb *, const struct iovec *, unsigned long, loff_t);
-	ssize_t (*write_iter) (struct kiocb *, struct iov_iter *, loff_t);
 	int (*readdir) (struct file *, void *, filldir_t);
 	unsigned int (*poll) (struct file *, struct poll_table_struct *);
 	long (*unlocked_ioctl) (struct file *, unsigned int, unsigned long);
@@ -807,15 +805,9 @@ otherwise noted.
 
   aio_read: called by io_submit(2) and other asynchronous I/O operations
 
-  read_iter: aio_read replacement, called by io_submit(2) and other
-	asynchronous I/O operations
-
   write: called by write(2) and related system calls
 
   aio_write: called by io_submit(2) and other asynchronous I/O operations
-
-  write_iter: aio_write replacement, called by io_submit(2) and other
-	asynchronous I/O operations
 
   readdir: called when the VFS needs to read the directory contents
 
@@ -826,7 +818,7 @@ otherwise noted.
   unlocked_ioctl: called by the ioctl(2) system call.
 
   compat_ioctl: called by the ioctl(2) system call when 32 bit system calls
-	 are used on 64 bit kernels.
+ 	 are used on 64 bit kernels.
 
   mmap: called by the mmap(2) system call
 
@@ -850,7 +842,7 @@ otherwise noted.
 	(non-blocking) mode is enabled for a file
 
   lock: called by the fcntl(2) system call for F_GETLK, F_SETLK, and F_SETLKW
-	commands
+  	commands
 
   readv: called by the readv(2) system call
 

@@ -43,3 +43,4 @@ Description:
 		different sysfs directory.  The location given above is
 		correct for 2.6.35 (and probably several earlier kernel
 		versions as well).
+

@@ -219,7 +219,7 @@ disk. Whole sequence goes like
       user processes are stopped
 
       suspend(PMSG_FREEZE): devices are frozen so that they don't interfere
-		      with state snapshot
+      		      with state snapshot
 
       state snapshot: copy of whole used memory is taken with interrupts disabled
 
@@ -242,7 +242,7 @@ disk. Whole sequence goes like
       read image from disk
 
       suspend(PMSG_FREEZE): devices are frozen so that they don't interfere
-		      with image restoration
+      		      with image restoration
 
       image restoration: rewrite memory with image
 

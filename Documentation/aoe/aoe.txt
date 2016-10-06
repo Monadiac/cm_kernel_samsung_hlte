@@ -1,6 +1,6 @@
 The EtherDrive (R) HOWTO for users of 2.6 kernels is found at ...
 
-  http://www.coraid.com/SUPPORT/EtherDrive-HBA
+  http://www.coraid.com/SUPPORT/EtherDrive-HBA  
 
   It has many tips and hints!
 
@@ -80,7 +80,7 @@ USING SYSFS
   in a convenient way.  Users with aoetools can use the aoe-stat
   command.
 
-  root@makki root# sh Documentation/aoe/status.sh
+  root@makki root# sh Documentation/aoe/status.sh 
      e10.0            eth3              up
      e10.1            eth3              up
      e10.2            eth3              up

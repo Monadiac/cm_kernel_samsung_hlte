@@ -40,8 +40,6 @@
 
 static int active_count;
 
-extern bool cpufreq_screen_on;
-
 struct cpufreq_interactive_cpuinfo {
 	struct timer_list cpu_timer;
 	struct timer_list cpu_slack_timer;
@@ -127,10 +125,6 @@ static u64 boostpulse_endtime;
 #define DEFAULT_TIMER_SLACK (4 * DEFAULT_TIMER_RATE)
 static int timer_slack_val = DEFAULT_TIMER_SLACK;
 
-#define TOP_STOCK_FREQ 2265600
-#define DEFAULT_SCREEN_OFF_MAX 2265600
-static unsigned long screen_off_max = DEFAULT_SCREEN_OFF_MAX;
-
 static bool io_is_busy;
 
 #ifdef CONFIG_MODE_AUTO_CHANGE
@@ -199,9 +193,9 @@ static int mode_count = 0;
  * up_threshold_any_cpu_freq then do not let the frequency to drop below
  * sync_freq
  */
-static unsigned int up_threshold_any_cpu_load = 60;
-static unsigned int sync_freq = 1036800;
-static unsigned int up_threshold_any_cpu_freq = 1728000;
+static unsigned int up_threshold_any_cpu_load;
+static unsigned int sync_freq;
+static unsigned int up_threshold_any_cpu_freq;
 
 static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 		unsigned int event);
@@ -683,7 +677,7 @@ static void cpufreq_interactive_timer(unsigned long data)
 
 	do_div(cputime_speedadj, delta_time);
 	loadadjfreq = (unsigned int)cputime_speedadj * 100;
-	cpu_load = loadadjfreq / pcpu->policy->cur;
+	cpu_load = loadadjfreq / pcpu->target_freq;
 	pcpu->prev_load = cpu_load;
 	boosted = boost_val || now < boostpulse_endtime;
 
@@ -700,8 +694,6 @@ static void cpufreq_interactive_timer(unsigned long data)
 			if (new_freq < hispeed_freq)
 				new_freq = hispeed_freq;
 		}
-		if (new_freq > TOP_STOCK_FREQ && cpu_load < 99)
-			new_freq = TOP_STOCK_FREQ;
 	} else {
 		new_freq = choose_freq(pcpu, loadadjfreq);
 
@@ -783,8 +775,7 @@ static void cpufreq_interactive_timer(unsigned long data)
 		pcpu->floor_validate_time = now;
 	}
 
-	if (pcpu->target_freq == new_freq &&
-			pcpu->target_freq <= pcpu->policy->cur) {
+	if (pcpu->target_freq == new_freq) {
 		trace_cpufreq_interactive_already(
 			data, cpu_load, pcpu->target_freq,
 			pcpu->policy->cur, new_freq);
@@ -932,9 +923,6 @@ static int cpufreq_interactive_speedchange_task(void *data)
 				if (pjcpu->target_freq > max_freq)
 					max_freq = pjcpu->target_freq;
 			}
-
-			if (unlikely(!cpufreq_screen_on))
-				if (max_freq > screen_off_max) max_freq = screen_off_max;
 
 			if (max_freq != pcpu->policy->cur)
 				__cpufreq_driver_target(pcpu->policy,
@@ -1093,8 +1081,8 @@ static ssize_t show_target_loads(
 		ret += sprintf(buf + ret, "%u%s", target_loads[i],
 			       i & 0x1 ? ":" : " ");
 #endif
-
-	sprintf(buf + ret - 1, "\n");
+    ret = ret - 1;
+	ret += sprintf(buf + ret, "\n");
 	spin_unlock_irqrestore(&target_loads_lock, flags);
 	return ret;
 }
@@ -1163,7 +1151,8 @@ static ssize_t show_above_hispeed_delay(
 			       i & 0x1 ? ":" : " ");
 #endif
 
-	sprintf(buf + ret - 1, "\n");
+    ret = ret - 1;
+	ret += sprintf(buf + ret, "\n");
 	spin_unlock_irqrestore(&above_hispeed_delay_lock, flags);
 	return ret;
 }
@@ -1493,30 +1482,6 @@ static ssize_t store_boostpulse_duration(
 
 define_one_global_rw(boostpulse_duration);
 
- static ssize_t show_screen_off_maxfreq(struct kobject *kobj,
-                                         struct attribute *attr, char *buf)
- {
-         return sprintf(buf, "%lu\n", screen_off_max);
- }
- 
- static ssize_t store_screen_off_maxfreq(struct kobject *kobj,
-                                          struct attribute *attr,
-                                          const char *buf, size_t count)
- {
-         int ret;
-         unsigned long val;
- 
-         ret = strict_strtoul(buf, 0, &val);
-         if (ret < 0) return ret;
-         if (val < 300000) screen_off_max = 2265600;
-         else screen_off_max = val;
-         return count;
- }
- 
- static struct global_attr screen_off_maxfreq =
-        __ATTR(screen_off_maxfreq, 0666, show_screen_off_maxfreq,
-                store_screen_off_maxfreq);
-
 static ssize_t show_io_is_busy(struct kobject *kobj,
 			struct attribute *attr, char *buf)
 {
@@ -1712,7 +1677,6 @@ static struct attribute *interactive_attributes[] = {
 	&boost.attr,
 	&boostpulse.attr,
 	&boostpulse_duration.attr,
-	&screen_off_maxfreq.attr,
 	&io_is_busy_attr.attr,
 	&sampling_down_factor_attr.attr,
 	&sync_freq_attr.attr,
@@ -1793,6 +1757,9 @@ static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 
 	switch (event) {
 	case CPUFREQ_GOV_START:
+		if (!cpu_online(policy->cpu))
+			return -EINVAL;
+
 		mutex_lock(&gov_lock);
 
 		freq_table =

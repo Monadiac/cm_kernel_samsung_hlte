@@ -1103,8 +1103,11 @@ positive:
 	return 1;
 
 rename_retry:
+	spin_unlock(&this_parent->d_lock);
+	rcu_read_unlock();
 	if (locked)
 		goto again;
+rename_retry_unlocked:
 	locked = 1;
 	write_seqlock(&rename_lock);
 	goto again;
@@ -3005,6 +3008,8 @@ ascend:
 	return;
 
 rename_retry:
+	spin_unlock(&this_parent->d_lock);
+	rcu_read_unlock();
 	if (locked)
 		goto again;
 	locked = 1;

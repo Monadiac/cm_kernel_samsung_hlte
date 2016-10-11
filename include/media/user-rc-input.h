@@ -10,15 +10,12 @@
  * GNU General Public License for more details.
  */
 
-#ifndef __GPIO_IR_RECV_H__
-#define __GPIO_IR_RECV_H__
+#ifndef __USER_RC_INPUT_H__
+#define __USER_RC_INPUT_H__
 
-struct gpio_ir_recv_platform_data {
-	int gpio_nr;
-	bool active_low;
-	bool can_wakeup;
-	u32 swfi_latency;
-};
+#define USER_CONTROL_PRESSED    0x01
+#define USER_CONTROL_REPEATED   0x02
+#define USER_CONTROL_RELEASED   0x03
 
-#endif /* __GPIO_IR_RECV_H__ */
+#endif /* __USER_RC_INPUT_H__ */
 

@@ -1,4 +1,4 @@
-/* Copyright (c) 2012, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2010-2013, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -8,17 +8,24 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
+ *
  */
+#ifndef VIDC_TYPE_H
+#define VIDC_TYPE_H
 
-#ifndef __GPIO_IR_RECV_H__
-#define __GPIO_IR_RECV_H__
+#include <linux/types.h>
+#include <linux/kernel.h>
+#include <linux/mutex.h>
+#include <linux/slab.h>
+#include <linux/string.h>
+#include <linux/list.h>
+#include <linux/time.h>
+#include <linux/dma-mapping.h>
 
-struct gpio_ir_recv_platform_data {
-	int gpio_nr;
-	bool active_low;
-	bool can_wakeup;
-	u32 swfi_latency;
-};
 
-#endif /* __GPIO_IR_RECV_H__ */
+#define DDL_MSG_LOG 0
+#define DEBUG 0
+#define VIDC_ENABLE_DBGFS
+#define USE_RES_TRACKER
 
+#endif

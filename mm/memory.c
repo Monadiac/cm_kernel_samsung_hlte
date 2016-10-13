@@ -1595,6 +1595,88 @@ int zap_vma_ptes(struct vm_area_struct *vma, unsigned long address,
 }
 EXPORT_SYMBOL_GPL(zap_vma_ptes);
 
+#ifdef CONFIG_CMA_PINPAGE_MIGRATION
+static struct page *__alloc_nonmovable_userpage(struct page *page,
+				unsigned long private, int **result)
+{
+	return alloc_page(GFP_HIGHUSER);
+}
+
+static inline int stack_guard_page(struct vm_area_struct *vma, unsigned long addr);
+
+static bool __need_migrate_cma_page(struct page *page,
+				struct vm_area_struct *vma,
+				unsigned long start, unsigned int flags)
+{
+	if (!(flags & FOLL_CMA))
+		return false;
+
+	if (!(flags & FOLL_GET))
+		return false;
+
+	if (!is_cma_pageblock(page))
+		return false;
+
+	if ((vma->vm_flags & VM_STACK_INCOMPLETE_SETUP) ==
+					VM_STACK_INCOMPLETE_SETUP)
+		return false;
+
+	migrate_prep_local();
+
+	if (!PageLRU(page))
+		return false;
+
+	return true;
+}
+
+static int __migrate_cma_pinpage(struct page *page, struct vm_area_struct *vma)
+{
+	struct zone *zone = page_zone(page);
+	struct list_head migratepages;
+	int tries = 0;
+	int ret = 0;
+
+	INIT_LIST_HEAD(&migratepages);
+
+	if (__isolate_lru_page(page, 0) != 0) {
+		pr_warn("%s: failed to isolate lru page\n", __func__);
+		dump_page(page);
+		return -EFAULT;
+	} else {
+		spin_lock_irq(&zone->lru_lock);
+		del_page_from_lru_list(zone, page, page_lru(page));
+		spin_unlock_irq(&zone->lru_lock);
+	}
+
+	list_add(&page->lru, &migratepages);
+	inc_zone_page_state(page, NR_ISOLATED_ANON + page_is_file_cache(page));
+
+	while (!list_empty(&migratepages) && tries++ < 5) {
+		ret = migrate_pages(&migratepages,
+			__alloc_nonmovable_userpage, 0, false, MIGRATE_SYNC);
+	}
+
+	if (ret < 0) {
+		putback_lru_pages(&migratepages);
+		pr_err("%s: migration failed %p[%#lx]\n", __func__,
+					page, page_to_pfn(page));
+		return -EFAULT;
+	}
+
+	return 0;
+}
+#endif
+
+/*
+ * FOLL_FORCE can write to even unwritable pte's, but only
+ * after we've gone through a COW cycle and they are dirty.
+ */
+static inline bool can_follow_write_pte(pte_t pte, unsigned int flags)
+{
+	return pte_write(pte) ||
+		((flags & FOLL_FORCE) && (flags & FOLL_COW) && pte_dirty(pte));
+}
+
 /**
  * follow_page - look up a page descriptor from a user-virtual address
  * @vma: vm_area_struct mapping @address
@@ -1677,7 +1759,7 @@ split_fallthrough:
 	pte = *ptep;
 	if (!pte_present(pte))
 		goto no_page;
-	if ((flags & FOLL_WRITE) && !pte_write(pte))
+	if ((flags & FOLL_WRITE) && !can_follow_write_pte(pte, flags))
 		goto unlock;
 
 	page = vm_normal_page(vma, address, pte);
@@ -1980,7 +2062,7 @@ int __get_user_pages(struct task_struct *tsk, struct mm_struct *mm,
 				 */
 				if ((ret & VM_FAULT_WRITE) &&
 				    !(vma->vm_flags & VM_WRITE))
-					foll_flags &= ~FOLL_WRITE;
+					foll_flags |= FOLL_COW;
 
 				cond_resched();
 			}
